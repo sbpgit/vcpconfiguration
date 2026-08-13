@@ -1,0 +1,299 @@
+_schema-version: 3.3.0
+ID: vcpconfiguration
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+  deploy_mode: html5-repo
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+modules:
+ 
+  - name: vcpconfiguration-app-deployer
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: vcpconfiguration-html5-repo-host
+        parameters:
+          content-target: true
+          config:
+            HTML5Runtime_enabled: true
+    build-parameters:
+      build-result: resources/
+      requires:    
+      - artifacts:
+        - cdm.json
+        name: vcpconfiguration-workzone-cdm
+        target-path: resources/    
+      - artifacts:
+        - vcpappvcpdynamicfrozenfirm.zip
+        name: vcpappvcpdynamicfrozenfirm
+        target-path: resources/
+      - artifacts:
+        - vcpappvcpcolorcodeuploadapp.zip
+        name: vcpappvcpcolorcodeuploadapp
+        target-path: resources/
+      - artifacts:
+        - vcpappvcpversionscenariomaintenance.zip
+        name: vcpappvcpversionscenariomaintenance
+        target-path: resources/
+      - artifacts:
+        - vcpappvcpkeyfiguremaintenance.zip
+        name: vcpappvcpkeyfiguremaintenance
+        target-path: resources/
+      - artifacts:
+        - vcpappvcpperiodprofilemaintenance.zip
+        name: vcpappvcpperiodprofilemaintenance
+        target-path: resources/
+      - artifacts:
+        - vcpappvcpplanningapps1.zip
+        name: vcpappvcpplanningapps1
+        target-path: resources/
+
+      - artifacts:
+        - vcpappvcppredictionprofilemaintenance.zip
+        name: vcpappvcppredictionprofilemaintenance
+        target-path: resources/
+
+      - artifacts:
+        - vcpappvcpprofileconfiguration.zip
+        name: vcpappvcpprofileconfiguration
+        target-path: resources/
+
+      - artifacts:
+        - demovcpcharconfig.zip
+        name: demovcpcharconfig
+        target-path: resources/
+        
+      - artifacts:
+        - vcpibpapis.zip
+        name: vcpibpapis
+        target-path: resources/
+
+  - name: vcpibpapis
+    type: html5
+    path: app/VCP_INTERFAXE_MAPPING_APP
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+      - npm install
+      - npm run build:cf
+      - rm -rf node_modules
+      supported-platforms: []
+      ignore:
+      - node_modules/ 
+      - dist/ 
+
+  - name: vcpappvcpprofileconfiguration
+    type: html5
+    path: app/VCP_Profile_Configuration
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+      - npm install
+      - npm run build:cf
+      - rm -rf node_modules
+      supported-platforms: []
+      ignore:
+      - node_modules/ 
+      - dist/ 
+
+  - name: vcpappvcppredictionprofilemaintenance
+    type: html5
+    path: app/VCP_PredictionProfileMaintenance
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+      - npm install
+      - npm run build:cf
+      - rm -rf node_modules
+      supported-platforms: []
+      ignore:
+      - node_modules/ 
+      - dist/ 
+ 
+  - name: demovcpcharconfig
+    type: html5
+    path: app/vcp_char_config
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+      - npm install
+      - npm run build:cf
+      - rm -rf node_modules
+      supported-platforms: []
+      ignore:
+      - node_modules/ 
+      - dist/ 
+
+  - name: vcpappvcpplanningapps1
+    type: html5
+    path: app/VCP_Planning_Application
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+      - npm install
+      - npm run build:cf
+      - rm -rf node_modules
+      supported-platforms: []  
+      ignore:
+      - node_modules/ 
+      - dist/ 
+  
+  - name: vcpappvcpcolorcodeuploadapp
+    type: html5
+    path: app/VCP_COLORCODEUPLOADAPP
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+      - npm install
+      - npm run build:cf
+      - rm -rf node_modules
+      supported-platforms: []
+      ignore:
+      - node_modules/ 
+      - dist/ 
+
+  - name: vcpappvcpdynamicfrozenfirm
+    type: html5
+    path: app/VCP_Dynamic_FrozenFirm
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+      - npm install
+      - npm run build:cf
+      - rm -rf node_modules
+      supported-platforms: []
+      ignore:
+      - node_modules/ 
+      - dist/ 
+
+  - name: vcpappvcpversionscenariomaintenance
+    type: html5
+    path: app/VCP_VERSION_SCENARIO
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+      - npm install
+      - npm run build:cf
+      - rm -rf node_modules
+      supported-platforms: []
+      ignore:
+      - node_modules/ 
+      - dist/ 
+
+  - name: vcpappvcpkeyfiguremaintenance
+    type: html5
+    path: app/VCP_KEY_FIGURE
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+      - npm install
+      - npm run build:cf
+      supported-platforms: []
+      ignore:
+      - node_modules/ 
+      - dist/ 
+
+  - name: vcpappvcpperiodprofilemaintenance
+    type: html5
+    path: app/VCP_PERIOD_PROFILE_MAINTENANCE
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+      - npm install
+      - npm run build:cf
+      - rm -rf node_modules
+      supported-platforms: []
+      ignore:
+      - node_modules/ 
+      - dist/ 
+
+  - name: vcpconfiguration-destinations
+    type: com.sap.application.content
+    requires:
+      - name: vcpconfiguration-html5-repo-host
+        parameters:
+          service-key:
+            name: vcpconfiguration-repo-host-key
+      - name: vcpconfiguration-html5-runtime
+        parameters:
+          service-key:
+            name: vcpconfiguration-html5-app-runtime-service-key
+      - name: vcpconfiguration-destination
+        parameters:
+          content-target: true
+    parameters:
+      content:
+        subaccount:
+          destinations:
+            - Name: vcpconfiguration_cdm
+              ServiceInstanceName: vcpconfiguration-html5-runtime
+              ServiceKeyName: vcpconfiguration-html5-app-runtime-service-key
+              URL: https://html5-apps-repo-rt.cfapps.us10.hana.ondemand.com/applications/cdm/vcpconfiguration
+              sap.cloud.service: vcpconfiguration
+          existing_destinations_policy: update
+    build-parameters:
+      no-source: true
+
+  - name: vcpconfiguration-workzone-cdm
+    type: html5
+    path: workzone
+    build-parameters:
+      build-result: .
+      supported-platforms: []
+            
+
+resources:
+  - name: vcpconfiguration-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+      config:
+        ExposeToSubaccounts: true
+        HTML5Runtime_enabled: true
+        init_data:
+          subaccount:
+            destinations:
+            - Authentication: NoAuthentication
+              Name: ui5
+              ProxyType: Internet
+              Type: HTTP
+              URL: https://ui5.sap.com
+            - Authentication: NoAuthentication
+              CEP.HTML5contentprovider: true
+              Name: vcpconfiguration-workzone-runtime
+              ProxyType: Internet
+              Type: HTTP
+              URL: https://mttsbpdigital.launchpad.cfapps.us10.hana.ondemand.com
+            existing_destinations_policy: update
+
+  - name: vcpconfiguration-html5-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+
+  - name: vcpconfiguration-html5-runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
+       
+
+

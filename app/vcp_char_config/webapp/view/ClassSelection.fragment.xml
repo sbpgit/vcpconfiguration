@@ -1,0 +1,51 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog id="classSelectionDialog" title="Select Classes and Products" contentWidth="900px" contentHeight="700px">
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <Text text="Select Classes and Products to Update" class="sapUiSmallMarginBottom boldText"/>
+                
+                <!-- Search Field for filtering classes -->
+                <SearchField id="classSearchField" liveChange="onClassSearch" placeholder="Search Classes..."/>
+                
+                <!-- Table for classes with expandable products -->
+                <Table id="classSelectionTable" items="{path: '/classData'}" growing="true" mode="None">
+                    <columns>
+                        <Column>
+                            <Text text="Select Class"/>
+                        </Column>
+                        <Column>
+                            <Text text="Class Name"/>
+                        </Column>
+                        <Column>
+                            <Text text="Class Description"/>
+                        </Column>
+                        <Column>
+                            <Text text="Products"/>
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <CheckBox selected="{selected}" select="onClassSelect"/>
+                                <Text text="{CLASS_NAME}"/>
+                                <Text text="{CLASS_DESC}"/>
+                                <VBox>
+                                    <Button text="Select Products" type="Transparent" 
+                                            press="onShowProductsForClass" 
+                                            visible="{selected}"
+                                            class="sapUiSmallMargin"/>
+                                    <Text text="{= ${selected} ? 'Click to select products' : ''}" 
+                                          class="sapUiSmallMargin"/>
+                                </VBox>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </content>
+        <buttons>
+            <Button text="Update" type="Emphasized" press="onConfirmProductSelection"/>
+            <Button text="Cancel" press="onCancelClassSelection"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

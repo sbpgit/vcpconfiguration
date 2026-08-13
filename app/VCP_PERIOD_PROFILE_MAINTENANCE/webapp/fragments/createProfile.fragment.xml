@@ -1,0 +1,81 @@
+<core:FragmentDefinition xmlns:microchart="sap.suite.ui.microchart" xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:micro="sap.suite.ui.microchart"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified">
+    <Dialog id="idRestItem2" title="Create" contentWidth="550px" titleAlignment="Center">
+           
+                
+        <VBox class="sapUiSmallMargin">
+            <f:SimpleForm id="SimpleFormToolbaritem2" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="4" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false">
+                <f:content>
+
+                    
+                    <Label required="true" text="Profile"/>
+                    <Input id="idProfile" value="" width="225px" maxLength="50"  placeholder="Profile"  type="Text" />
+                    <Label required="true" text="Profile Desc"/>
+                    <Input id="idProfDesc" value="" width="225px" maxLength="100" placeholder="Profile Desc" type="Text"  />
+                    
+                  
+                    <Label required="true" text="Weekly" />
+                    <Input id="idWeek" value="0" liveChange="onSelMonth"  placeholder="0 - 104" type="Number" visible="true"/>
+                    <Text text="Weeks" textAlign="Begin" visible="true" />
+                    
+                    <Label  required="true" text="Monthly" />
+                    <Input id="idMonth" value="0"  liveChange="onSelMonth" placeholder="0 - 104"  type="Number" visible="true"/>
+                    <Text text="Weeks" textAlign="Begin" visible="true" />
+
+                    <Label required="true" text="Quarterly" />
+                    <Input id="idQuarter" value="0"  liveChange="onSelMonth" placeholder="0 - 104"  type="Number" visible="true"/>
+                    <Text text="Weeks" textAlign="Begin" visible="true" />
+                    <!-- <VBox> -->
+<!-- <microchart:StackedBarMicroChart size="L" press="press" precision="0" class="sapUiSmallMargin">
+			<microchart:bars>
+				<microchart:StackedBarMicroChartBar valueColor="Information" value="40"/>
+				<microchart:StackedBarMicroChartBar valueColor="Critical" value="20"/>
+				<microchart:StackedBarMicroChartBar valueColor="Error" value="50"/>
+			</microchart:bars>
+		</microchart:StackedBarMicroChart> -->
+<!-- </VBox> -->
+ <!-- <Panel>
+      <smartmicrochart:SmartStackedBarMicroChart id="smartchart"  chartBindingPath="{/chartData}" >
+      </smartmicrochart:SmartStackedBarMicroChart>
+    </Panel> -->
+
+    	
+  
+
+                </f:content>
+            </f:SimpleForm>
+        </VBox>
+   <Panel >
+        <micro:StackedBarMicroChart size="Responsive" class="margin" width="400px" >
+								<micro:bars>
+									<micro:StackedBarMicroChartBar id="idWeekly" displayValue="0 Weekly" value="0"/>
+									<micro:StackedBarMicroChartBar id="idMonthly"  displayValue="0 Monthly" value="0"/>
+									<micro:StackedBarMicroChartBar id="QuarterID"  displayValue="0 Quarterly" value="0"/>
+								</micro:bars>
+                                
+							</micro:StackedBarMicroChart>
+                            <HBox >
+                               <Text text="0" id="idTotal"  ></Text>
+                            </HBox>
+                          
+                            </Panel>
+                           
+          
+       
+            
+         
+       
+     
+     
+        <buttons>
+            
+            <Button id="idAdd" text="Save" press="onSave" type="Emphasized"/>
+            <Button type='Reject' text="Close" press="onClose"></Button>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

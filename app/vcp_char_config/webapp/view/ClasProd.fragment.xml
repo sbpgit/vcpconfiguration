@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog id="idClasProdCHACON" title="Products"  liveChange="handleSearchforClasProd"  confirm="handleSelectionForProdClas" 
+	initialFocus="List" cancel="handleClose"  contentWidth="250px" items="{/aItems}" 
+        growing="true">
+		<StandardListItem title="{REF_PRODID}" description="{REFPROD_DESC}" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

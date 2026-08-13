@@ -1,0 +1,259 @@
+[
+  {
+    "_version": "3.0",
+    "identification": {
+      "id": "vcpconfiguration-catalog",
+      "title": "catalog.vcpconfiguration.title",
+      "entityType": "catalog"
+    },
+    "payload": {
+      "viz": [
+        {
+          "appId": "vcpapp.vcpdynamicfrozenfirm",
+          "vizId": "vcp_dynamic-display"
+        },
+        {
+          "appId": "vcpapp.vcpcolorcodeuploadapp",
+          "vizId": "colorcode-display"
+        },
+        {
+          "appId": "vcpapp.vcpversionscenariomaintenance",
+          "vizId": "vcpversionscenaiomaintenance-display"
+        },
+        {
+          "appId": "vcpapp.vcpkeyfiguremaintenance",
+          "vizId": "KeyFigMain-display"
+        },
+        {
+          "appId": "vcpapp.vcpperiodprofilemaintenance",
+          "vizId": "PerProfile-Display"
+        },
+        {
+          "appId": "vcpapp.vcpplanningapps1",
+          "vizId": "planningapps-display"
+        },
+        {
+          "appId": "vcpapp.vcppredictionprofilemaintenance",
+          "vizId": "PredProfMain-display"
+        },
+        {
+          "appId": "vcpapp.vcpprofileconfiguration",
+          "vizId": "ProConfig-Display"
+        },
+        {
+          "appId": "vcpibpapis",
+          "vizId": "IbpApi-display"
+        },
+        {
+          "appId": "demo.vcpcharconfig",
+          "vizId": "CharConfg-display"
+        }
+      ]
+    },
+    "texts": [
+      {
+        "locale": "",
+        "textDictionary": {
+          "catalog.vcpconfiguration.title": "VCP Sass Location Management"
+        }
+      }
+    ]
+  },
+  {
+    "_version": "3.0",
+    "identification": {
+      "id": "vcpconfiguration-group",
+      "title": "Configuration",
+      "entityType": "group"
+    },
+    "payload": {
+      "viz": [
+        {
+          "appId": "vcpapp.vcpdynamicfrozenfirm",
+          "vizId": "vcp_dynamic-display"
+        },
+        {
+          "appId": "vcpapp.vcpcolorcodeuploadapp",
+          "vizId": "colorcode-display"
+        },
+        {
+          "appId": "vcpapp.vcpversionscenariomaintenance",
+          "vizId": "vcpversionscenaiomaintenance-display"
+        },
+        {
+          "appId": "vcpapp.vcpkeyfiguremaintenance",
+          "vizId": "KeyFigMain-display"
+        },
+        {
+          "appId": "vcpapp.vcpperiodprofilemaintenance",
+          "vizId": "PerProfile-Display"
+        },
+        {
+          "appId": "vcpapp.vcpplanningapps1",
+          "vizId": "planningapps-display"
+        },
+        {
+          "appId": "vcpapp.vcppredictionprofilemaintenance",
+          "vizId": "PredProfMain-display"
+        },
+        {
+          "appId": "vcpapp.vcpprofileconfiguration",
+          "vizId": "ProConfig-Display"
+        },
+        {
+          "appId": "vcpibpapis",
+          "vizId": "IbpApi-display"
+        },
+        {
+          "appId": "demo.vcpcharconfig",
+          "vizId": "CharConfg-display"
+        }
+      ]
+    },
+    "texts": [
+      {
+        "locale": "",
+        "textDictionary": {
+          "group.vcpconfiguration.title": "Configuration"
+        }
+      }
+    ]
+  },
+  {
+    "_version": "3.0",
+    "identification": {
+      "id": "vcpconfigurationRole",
+      "entityType": "role",
+      "title": "VCP Configuration Role",
+      "description": "VCP Configuration Role"
+    },
+    "payload": {
+      "apps": [
+        {
+          "id": "vcpapp.vcpdynamicfrozenfirm"
+        },
+        {
+          "id": "vcpapp.vcpcolorcodeuploadapp"
+        },
+        {
+          "id": "vcpapp.vcpversionscenariomaintenance"
+        },
+        {
+          "id": "vcpapp.vcpkeyfiguremaintenance"
+        },
+        {
+          "id": "vcpapp.vcpperiodprofilemaintenance"
+        },
+        {
+          "id": "vcpapp.vcpplanningapps1"
+        },
+        {
+          "id": "vcpapp.vcppredictionprofilemaintenance"
+        },
+        {
+          "id": "vcpapp.vcpprofileconfiguration"
+        },
+        {
+          "id": "vcpibpapis"
+        },
+        {
+          "id": "demo.vcpcharconfig"
+        }
+      ],
+      "catalogs": [
+        {
+          "id": "vcpconfiguration-catalog"
+        }
+      ],
+      "groups": [
+        {
+          "id": "vcpconfiguration-group"
+        }
+      ],
+      "spaces": [
+        {
+          "id": "vcpconfiguration-space"
+        }
+      ]
+    }
+  },
+  {
+    "_version": "3.2.0",
+    "identification": {
+      "id": "vcpconfiguration-page",
+      "title": "Configuration",
+      "entityType": "page"
+    },
+    "payload": {
+      "layout": {
+        "sectionLayout": "tabbed"
+      },
+      "sections": [
+        {
+          "id": "vcpconfiguration-section-1",
+          "title": "Configuration",
+          "viz": [
+            {
+              "appId": "vcpapp.vcpdynamicfrozenfirm",
+              "vizId": "vcp_dynamic-display"
+            },
+            {
+              "appId": "vcpapp.vcpcolorcodeuploadapp",
+              "vizId": "colorcode-display"
+            },
+            {
+              "appId": "vcpapp.vcpversionscenariomaintenance",
+              "vizId": "vcpversionscenaiomaintenance-display"
+            },
+            {
+              "appId": "vcpapp.vcpkeyfiguremaintenance",
+              "vizId": "KeyFigMain-display"
+            },
+            {
+              "appId": "vcpapp.vcpperiodprofilemaintenance",
+              "vizId": "PerProfile-Display"
+            }
+          ]
+        },
+        {
+          "id": "vcpconfiguration-section-2",
+          "title": "Planning Configuration",
+          "viz": [
+            {
+              "appId": "vcpapp.vcppredictionprofilemaintenance",
+              "vizId": "PredProfMain-display"
+            },
+            {
+              "appId": "vcpapp.vcpprofileconfiguration",
+              "vizId": "ProConfig-Display"
+            },
+            {
+              "appId": "demo.vcpcharconfig",
+              "vizId": "CharConfg-display"
+            },
+            {
+              "appId": "vcpibpapis",
+              "vizId": "IbpApi-display"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "_version": "3.2.0",
+    "identification": {
+      "id": "vcpconfiguration-space",
+      "title": "Configuration",
+      "entityType": "space"
+    },
+    "payload": {
+      "contentNodes": [
+        {
+          "id": "vcpconfiguration-page",
+          "type": "page"
+        }
+      ]
+    }
+  }
+]

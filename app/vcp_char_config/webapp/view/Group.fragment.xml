@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog contentWidth="30%" id = "oDlgCHACON" title="Create Group Name">
+        <VBox class="container">
+          <HBox>
+                <Label text="Product :" class="configLabel" />
+                <Input id="oProductCHACON" width="180px" required="true" enabled="false"  />
+            </HBox>
+            <HBox>
+                <Label text="Group Name :" class="configLabel" />
+                <Input id="oGroupNameCHACON" width="180px" required="true" />
+            </HBox>
+            <HBox>
+                <Label text="Weightage :" class="configLabel" />
+                <Input id="oWeightageCHACON" width="180px" required="true" type="Number" />
+            </HBox>
+            <OverflowToolbar style="Clear">
+                <ToolbarSpacer ></ToolbarSpacer>
+
+                <Button text="Create" id="gCreateCHACON" type="Emphasized" press="onGroupCreate" />
+                <Button text="Update" id="gEditCHACON" visible="false" type ="Emphasized" press="onEdit" />
+                <ToolbarSeparator visible="false"></ToolbarSeparator>
+                <Button text="Cancel" type="Default" press="onGCancel" />
+
+            </OverflowToolbar>
+            <!-- <HBox justifyContent="Center">
+           
+            </HBox> -->
+        </VBox>
+    </Dialog>
+</core:FragmentDefinition>

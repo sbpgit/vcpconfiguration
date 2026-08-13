@@ -1,0 +1,60 @@
+<mvc:View controllerName="vcpapp.vcpperiodprofilemaintenance.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc"
+	  xmlns:smartmicrochart="sap.ui.comp.smartmicrochart"
+    xmlns="sap.m">
+    <Page id="page">
+    		<headerContent>
+			<SearchField liveChange="onSearch" width="300px" placeholder="Profile/Profile Desc"  id="idSearch"/>
+			<ToolbarSpacer/>
+			<Button id="idCreate" text="Create" press="onCreate" type="Emphasized"/>
+			<Button class="classHdr" icon="sap-icon://sys-help" id="idNav3PRD" press="onNavPress" type="Emphasized" tooltip="Help Document"/>
+		</headerContent>
+		<content>
+			<Table id="ProfSection" sticky="ColumnHeaders" items="{path: '/results'}" selectionChange="onLocSelect" mode="SingleSelectMaster"  growing="true"   growingScrollToLoad="true" growingFinished="onGrowingProduct"
+				rememberSelections="false">
+				<columns>
+					<Column >
+						<Label text="Profile"/>
+					</Column>
+					<Column >
+						<Label text="Profile Desc"></Label>
+					</Column>
+                    	<Column >
+						<Label text="Weekly"></Label>
+					</Column>
+                    	<Column >
+						<Label text="Monthly"></Label>
+					</Column>
+
+                    <Column >
+						<Label text="Quarterly"></Label>
+					</Column>
+					
+					
+					
+					<Column hAlign="End" >
+						<Label text="" ></Label>
+					</Column>
+
+                    <Column hAlign="Begin" >
+						<Label text=""></Label>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<!-- <ObjectIdentifier text="{LOCATION_ID}"> </ObjectIdentifier> -->
+						<!-- <Link text="{UNIQUE_ID}" press="onUniqueIdPress"/> -->
+						<Text text="{PROFILE}"/>
+						<Text text="{PROFILE_DESC}"></Text>
+                        <Text text="{WEEKLY}"  ></Text>
+                        <Text text="{MONTHLY}"></Text>
+                        <Text text="{QUARTERLY}"></Text>
+						
+						<Button id="idEdit" text="" icon="sap-icon://edit" press="onEdit"/>
+                        <Button id="idDelete" text="" icon="sap-icon://delete" press="onDelete"/>
+					</ColumnListItem>
+				</items>
+			</Table>
+            </content>
+    </Page>
+</mvc:View>
