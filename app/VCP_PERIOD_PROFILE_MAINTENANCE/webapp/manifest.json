@@ -62,7 +62,8 @@
       "minUI5Version": "1.150.1",
       "libs": {
         "sap.m": {},
-        "sap.ui.core": {}
+        "sap.ui.core": {},
+        "sap.suite.ui.microchart": {}
       }
     },
     "contentDensities": {
@@ -79,10 +80,10 @@
       "oGModel": {
         "type": "sap.ui.model.json.JSONModel",
         "settings": {
-            "defaultBindingMode": "TwoWay"
+          "defaultBindingMode": "TwoWay"
         },
         "preload": true
-    },
+      },
       "BModel": {
         "dataSource": "mainService",
         "preload": true,
@@ -143,8 +144,8 @@
   },
   "sap.platform.cf": {
     "oAuthScopes": [
-        "$XSAPPNAME.User",
-        "$XSAPPNAME.admin"
+      "$XSAPPNAME.User",
+      "$XSAPPNAME.admin"
     ]
-}
+  }
 }
