@@ -66,7 +66,7 @@ sap.ui.define([
                 const oSelectedModel = new JSONModel({ items: [] });
                 this.getView().setModel(oSelectedModel, "selectedModel");
                 that.getView().setModel(oSeqModel, "seqModel");
-                    
+
                 that.getView().setModel(new JSONModel({}));
 
                 if (!this._valueHelpDialogLoc) {
@@ -2035,6 +2035,110 @@ sap.ui.define([
                         },
                         success: function (oData) {
                             var oData = JSON.parse(oData.getCharGroupWeightage)
+
+                            // ==========================================
+                            // Changed By and Changed Date/Time (IST)
+                            // ==========================================
+
+                            function formatPriorChangedDateTime(oItem) {
+
+                                if (!oItem || !oItem.CHANGED_DATE) {
+                                    return "";
+                                }
+
+                                var sRawDate = String(oItem.CHANGED_DATE).trim();
+                                var yyyy, mm, dd;
+                                var sTime = "";
+
+                                // Extract date without timezone shifting
+                                var aDate = sRawDate.match(
+                                    /^(\d{4})-(\d{2})-(\d{2})/
+                                );
+
+                                if (aDate) {
+                                    yyyy = aDate[1];
+                                    mm = aDate[2];
+                                    dd = aDate[3];
+                                } else {
+                                    var oDate = new Date(sRawDate);
+
+                                    if (isNaN(oDate.getTime())) {
+                                        return "";
+                                    }
+
+                                    var aParts = new Intl.DateTimeFormat("en-GB", {
+                                        timeZone: "Asia/Kolkata",
+                                        day: "2-digit",
+                                        month: "2-digit",
+                                        year: "numeric"
+                                    }).formatToParts(oDate);
+
+                                    var oParts = {};
+                                    aParts.forEach(function (p) {
+                                        oParts[p.type] = p.value;
+                                    });
+
+                                    dd = oParts.day;
+                                    mm = oParts.month;
+                                    yyyy = oParts.year;
+                                }
+
+                                // SAP Edm.Time format: { ms: milliseconds }
+                                if (oItem.CHANGED_TIME &&
+                                    typeof oItem.CHANGED_TIME.ms === "number") {
+
+                                    var nMs = oItem.CHANGED_TIME.ms;
+
+                                    var hours = Math.floor(nMs / 3600000);
+                                    var minutes = Math.floor((nMs % 3600000) / 60000);
+                                    var seconds = Math.floor((nMs % 60000) / 1000);
+
+                                    sTime =
+                                        String(hours).padStart(2, "0") + ":" +
+                                        String(minutes).padStart(2, "0") + ":" +
+                                        String(seconds).padStart(2, "0");
+
+                                } else if (typeof oItem.CHANGED_TIME === "string") {
+
+                                    sTime = oItem.CHANGED_TIME;
+
+                                } else {
+
+                                    // If date already contains time
+                                    var aTime = sRawDate.match(
+                                        /(\d{2}):(\d{2}):(\d{2})/
+                                    );
+
+                                    if (aTime) {
+                                        sTime = aTime[0];
+                                    }
+                                }
+
+                                return dd + "-" + mm + "-" + yyyy +
+                                    (sTime ? " " + sTime : "");
+                            }
+
+                            // Get latest available audit information
+                            var oLatest = oData.find(function (item) {
+                                return item.CHANGED_BY || item.CHANGED_DATE;
+                            }) || oData[0];
+
+                            if (oLatest) {
+
+                                that.byId("oPriorChngByCHACON").setText(
+                                    oLatest.CHANGED_BY || ""
+                                );
+
+                                that.byId("oPriorChngTmCHACON").setText(
+                                    formatPriorChangedDateTime(oLatest)
+                                );
+
+                            } else {
+
+                                that.byId("oPriorChngByCHACON").setText("");
+                                that.byId("oPriorChngTmCHACON").setText("");
+                            }
+
 
                             oData.forEach(item => {
                                 item.CHANGED_BY = item.CHANGED_BY || "";
@@ -4710,6 +4814,7 @@ sap.ui.define([
                         },
                         success: function (oData) {
                             var ogetData = JSON.parse(oData.getProductCharVal);
+
                             ogetData.forEach(item => {
                                 item.CHANGED_BY = item.CHANGED_BY || "";
                                 item.CHANGED_DATE = item.CHANGED_DATE || "";
@@ -7258,115 +7363,389 @@ sap.ui.define([
 
             /* /////////////////// SCM Relevent manual updating function ends ////////////////////////// */
 
+            // loadIbp: function (oEvent) {
+            //     that.oModel.setData({
+            //         results: [],
+            //     });
+
+            //     that.byId("classListCHACON").setModel(that.oModel);
+            //     var oItem = that.byId("idCommonCHACON").getValue(),
+            //         oFilters = [];
+            //     that.ocIbp = [];
+            //     var topCount = that.oGModel.getProperty("/MaxCount");
+            //     if (oItem) {
+            //         var filter = new Filter("PRODUCT_ID", FilterOperator.EQ, oItem);
+            //         oFilters.push(filter);
+            //     }
+            //     if (oItem) {
+            //         sap.ui.core.BusyIndicator.show();
+            //         that.getOwnerComponent().getModel("BModel").read("/getIBPProdClass", {
+            //             filters: oFilters,
+            //             urlParameters: {
+            //                 "$skip": that.skip,
+            //                 "$top": topCount
+            //             },
+            //             success: function (oData) {
+            //                 sap.ui.core.BusyIndicator.hide();
+            //                 that.cFlag = ""
+            //                 if (topCount == oData.results.length) {
+            //                     oData.results.forEach(function (log) {
+            //                         if (log.CHANGED_DATE && log.CHANGED_TIME) {
+            //                             let date = new Date(log.CHANGED_DATE);
+
+            //                             date.setMilliseconds(date.getMilliseconds() + log.CHANGED_TIME.ms);
+
+            //                             // Format as YYYY-MM-DD HH:mm:ss
+            //                             let year = date.getFullYear();
+            //                             let month = String(date.getMonth() + 1).padStart(2, '0');
+            //                             let day = String(date.getDate()).padStart(2, '0');
+            //                             let hours = String(date.getHours()).padStart(2, '0');
+            //                             let minutes = String(date.getMinutes()).padStart(2, '0');
+            //                             let seconds = String(date.getSeconds()).padStart(2, '0');
+
+            //                             log.CHANGED_DATE = `${year}-${month}-${day} T ${hours}:${minutes}:${seconds}`;
+            //                         }
+            //                     });
+            //                     that.skip += (topCount);
+            //                     that.ocIbp = that.ocIbp.concat(oData.results);
+            //                     that.loadIbp();
+            //                 } else {
+            //                     that.skip = 0;
+            //                     oData.results.forEach(function (log) {
+            //                         if (log.CHANGED_DATE && log.CHANGED_TIME) {
+            //                             let date = new Date(log.CHANGED_DATE);
+
+            //                             date.setMilliseconds(date.getMilliseconds() + log.CHANGED_TIME.ms);
+
+            //                             // Format as YYYY-MM-DD HH:mm:ss
+            //                             let year = date.getFullYear();
+            //                             let month = String(date.getMonth() + 1).padStart(2, '0');
+            //                             let day = String(date.getDate()).padStart(2, '0');
+            //                             let hours = String(date.getHours()).padStart(2, '0');
+            //                             let minutes = String(date.getMinutes()).padStart(2, '0');
+            //                             let seconds = String(date.getSeconds()).padStart(2, '0');
+
+            //                             log.CHANGED_DATE = `${year}-${month}-${day} T ${hours}:${minutes}:${seconds}`;
+            //                         }
+            //                     });
+            //                     that.ocIbp = that.ocIbp.concat(oData.results);
+            //                     that.byId("classSearchCHACON").setValue("")
+            //                     var oBinddata = that.removeDuplicateforProdClas(that.ocIbp, "CLASS_NAME")
+            //                     that.oModel.setSizeLimit(oBinddata.length)
+            //                     that.oModel.setData({
+            //                         results: oBinddata,
+            //                     });
+
+
+
+            //                     if (oBinddata && oBinddata.length > 0) {
+            //                         that.byId("oChngByCHACON").setText(oBinddata[0].CHANGED_BY || "");
+            //                         that.byId("oChngTmCHACON").setText(oBinddata[0].CHANGED_DATE || "");
+            //                     } else {
+            //                         that.byId("oChngByCHACON").setText("");
+            //                         that.byId("oChngTmCHACON").setText("");
+            //                     }
+
+            //                     var temp = JSON.stringify(oData.results)
+            //                     that.clsResults = JSON.parse(temp);
+            //                     that.byId("classListCHACON").setModel(that.oModel);
+            //                     //   that.getEnable();
+
+            //                     that.releventCls = that.clsResults
+            //                     //   that.validation();
+            //                 }
+
+
+            //             },
+            //             error: function (oData, error) {
+            //                 sap.ui.core.BusyIndicator.hide();
+            //                 MessageToast.show("Error While getting data");
+            //             },
+            //         });
+            //     } else {
+            //         //  that.onClearReset()
+            //         that.onResetPress()
+            //     }
+            // },
+
+
             loadIbp: function (oEvent) {
+
                 that.oModel.setData({
-                    results: [],
+                    results: []
                 });
 
                 that.byId("classListCHACON").setModel(that.oModel);
+
                 var oItem = that.byId("idCommonCHACON").getValue(),
                     oFilters = [];
+
                 that.ocIbp = [];
+
                 var topCount = that.oGModel.getProperty("/MaxCount");
+
                 if (oItem) {
-                    var filter = new Filter("PRODUCT_ID", FilterOperator.EQ, oItem);
+                    var filter = new Filter(
+                        "PRODUCT_ID",
+                        FilterOperator.EQ,
+                        oItem
+                    );
                     oFilters.push(filter);
                 }
+
                 if (oItem) {
+
                     sap.ui.core.BusyIndicator.show();
-                    that.getOwnerComponent().getModel("BModel").read("/getIBPProdClass", {
-                        filters: oFilters,
-                        urlParameters: {
-                            "$skip": that.skip,
-                            "$top": topCount
-                        },
-                        success: function (oData) {
-                            sap.ui.core.BusyIndicator.hide();
-                            that.cFlag = ""
-                            if (topCount == oData.results.length) {
-                                oData.results.forEach(function (log) {
-                                    if (log.CHANGED_DATE && log.CHANGED_TIME) {
-                                        let date = new Date(log.CHANGED_DATE);
 
-                                        date.setMilliseconds(date.getMilliseconds() + log.CHANGED_TIME.ms);
+                    that.getOwnerComponent().getModel("BModel").read(
+                        "/getIBPProdClass",
+                        {
+                            filters: oFilters,
 
-                                        // Format as YYYY-MM-DD HH:mm:ss
-                                        let year = date.getFullYear();
-                                        let month = String(date.getMonth() + 1).padStart(2, '0');
-                                        let day = String(date.getDate()).padStart(2, '0');
-                                        let hours = String(date.getHours()).padStart(2, '0');
-                                        let minutes = String(date.getMinutes()).padStart(2, '0');
-                                        let seconds = String(date.getSeconds()).padStart(2, '0');
+                            urlParameters: {
+                                "$skip": that.skip,
+                                "$top": topCount
+                            },
 
-                                        log.CHANGED_DATE = `${year}-${month}-${day} T ${hours}:${minutes}:${seconds}`;
-                                    }
-                                });
-                                that.skip += (topCount);
-                                that.ocIbp = that.ocIbp.concat(oData.results);
-                                that.loadIbp();
-                            } else {
-                                that.skip = 0;
-                                oData.results.forEach(function (log) {
-                                    if (log.CHANGED_DATE && log.CHANGED_TIME) {
-                                        let date = new Date(log.CHANGED_DATE);
+                            success: function (oData) {
 
-                                        date.setMilliseconds(date.getMilliseconds() + log.CHANGED_TIME.ms);
+                                sap.ui.core.BusyIndicator.hide();
 
-                                        // Format as YYYY-MM-DD HH:mm:ss
-                                        let year = date.getFullYear();
-                                        let month = String(date.getMonth() + 1).padStart(2, '0');
-                                        let day = String(date.getDate()).padStart(2, '0');
-                                        let hours = String(date.getHours()).padStart(2, '0');
-                                        let minutes = String(date.getMinutes()).padStart(2, '0');
-                                        let seconds = String(date.getSeconds()).padStart(2, '0');
+                                that.cFlag = "";
 
-                                        log.CHANGED_DATE = `${year}-${month}-${day} T ${hours}:${minutes}:${seconds}`;
-                                    }
-                                });
-                                that.ocIbp = that.ocIbp.concat(oData.results);
-                                that.byId("classSearchCHACON").setValue("")
-                                var oBinddata = that.removeDuplicateforProdClas(that.ocIbp, "CLASS_NAME")
-                                that.oModel.setSizeLimit(oBinddata.length)
-                                that.oModel.setData({
-                                    results: oBinddata,
-                                });
+                                // Original pagination logic - unchanged
+                                if (topCount == oData.results.length) {
 
-                                // that.byId("oChngByCHACON").setText(oBinddata[0].CHANGED_BY)
-                                // that.byId("oChngTmCHACON").setText(oBinddata[0].CHANGED_DATE)
+                                    that.skip += topCount;
 
-                                // that.byId("oChngByCHACON").setText(oBinddata[0].CHANGED_BY || "");
-                                // that.byId("oChngTmCHACON").setText(oBinddata[0].CHANGED_DATE ? oBinddata[0].CHANGED_DATE : "");
+                                    that.ocIbp = that.ocIbp.concat(
+                                        oData.results
+                                    );
 
-                                if (oBinddata && oBinddata.length > 0) {
-                                    that.byId("oChngByCHACON").setText(oBinddata[0].CHANGED_BY || "");
-                                    that.byId("oChngTmCHACON").setText(oBinddata[0].CHANGED_DATE || "");
+                                    that.loadIbp();
+
                                 } else {
-                                    that.byId("oChngByCHACON").setText("");
-                                    that.byId("oChngTmCHACON").setText("");
+
+                                    that.skip = 0;
+
+                                    that.ocIbp = that.ocIbp.concat(
+                                        oData.results
+                                    );
+
+                                    that.byId("classSearchCHACON").setValue("");
+
+                                    // Original duplicate removal
+                                    // var oBinddata =
+                                    //     that.removeDuplicateforProdClas(
+                                    //         that.ocIbp,
+                                    //         "CLASS_NAME"
+                                    //     );
+
+                                    // // Original table binding
+                                    // that.oModel.setSizeLimit(oBinddata.length);
+
+                                    // that.oModel.setData({
+                                    //     results: oBinddata
+                                    // });
+
+                                    // // =================================
+                                    // // Changed By and Changed Time
+                                    // // =================================
+
+                                    // if (oBinddata && oBinddata.length > 0) {
+
+                                    //     var oLatest = oBinddata[0];
+
+                                    //     that.byId("oChngByCHACON").setText(
+                                    //         oLatest.CHANGED_BY || ""
+                                    //     );
+
+                                    //     // CHANGED_DATE already contains
+                                    //     // date and time from backend
+                                    //     var sChangedDate =
+                                    //         oLatest.CHANGED_DATE || "";
+
+                                    //     sChangedDate = String(sChangedDate)
+                                    //         .replace(/\s*T\s*/, " ");
+
+                                    //     that.byId("oChngTmCHACON").setText(
+                                    //         sChangedDate
+                                    //     );
+
+                                    // } else {
+
+                                    //     that.byId("oChngByCHACON").setText("");
+                                    //     that.byId("oChngTmCHACON").setText("");
+                                    // }
+
+                                    var oBinddata = that.removeDuplicateforProdClas(
+                                        that.ocIbp,
+                                        "CLASS_NAME"
+                                    );
+
+                                    that.oModel.setSizeLimit(oBinddata.length);
+
+                                    that.oModel.setData({
+                                        results: oBinddata
+                                    });
+
+                                    // ==================================
+                                    // Changed By and Changed Time
+                                    // ==================================
+
+                                    if (oBinddata && oBinddata.length > 0) {
+
+                                        var oLatest = oBinddata[0];
+
+                                        // Changed By
+                                        that.byId("oChngByCHACON").setText(
+                                            oLatest.CHANGED_BY || ""
+                                        );
+
+                                        // Changed Date
+                                        var sChangedDate = "";
+
+
+                                        var sRawDate = oLatest.CHANGED_DATE;
+
+                                        if (sRawDate) {
+
+                                            var sDate = String(sRawDate).trim();
+
+                                            // Format 1: 2026-11-04 T 19:20:31
+                                            var aMatch = sDate.match(
+                                                /^(\d{4})-(\d{2})-(\d{2})\s*T?\s*(\d{2}):(\d{2}):(\d{2})$/
+                                            );
+
+                                            if (aMatch) {
+
+                                                sChangedDate =
+                                                    aMatch[3] + "-" +
+                                                    aMatch[2] + "-" +
+                                                    aMatch[1] + " " +
+                                                    aMatch[4] + ":" +
+                                                    aMatch[5] + ":" +
+                                                    aMatch[6];
+
+                                            } else {
+
+                                                // Format 2: JavaScript Date string
+                                                var oDate = new Date(sDate);
+
+                                                if (!isNaN(oDate.getTime())) {
+
+                                                    var aParts = new Intl.DateTimeFormat("en-GB", {
+                                                        timeZone: "Asia/Kolkata",
+                                                        day: "2-digit",
+                                                        month: "2-digit",
+                                                        year: "numeric",
+                                                        hour: "2-digit",
+                                                        minute: "2-digit",
+                                                        second: "2-digit",
+                                                        hourCycle: "h23"
+                                                    }).formatToParts(oDate);
+
+                                                    var oParts = {};
+
+                                                    aParts.forEach(function (p) {
+                                                        oParts[p.type] = p.value;
+                                                    });
+
+                                                    sChangedDate =
+                                                        oParts.year + "-" +
+                                                        oParts.month + "-" +
+                                                        oParts.day + " T " +
+                                                        oParts.hour + ":" +
+                                                        oParts.minute + ":" +
+                                                        oParts.second;
+                                                }
+
+                                                //     sChangedDate =
+                                                //         oParts.day + "-" +
+                                                //         oParts.month + "-" +
+                                                //         oParts.day + " T " +
+                                                //         oParts.year + " " +
+                                                //         oParts.hour + ":" +
+                                                //         oParts.minute + ":" +
+                                                //         oParts.second;
+                                                // }
+                                            }
+                                        }
+
+                                        that.byId("oChngTmCHACON").setText(sChangedDate);
+
+                                        // if (oLatest.CHANGED_DATE) {
+                                        //     var oDate = new Date(oLatest.CHANGED_DATE);
+
+                                        //     if (!isNaN(oDate.getTime())) {
+                                        //         var dd = String(oDate.getDate()).padStart(2, "0");
+                                        //         var mm = String(oDate.getMonth() + 1).padStart(2, "0");
+                                        //         var yyyy = oDate.getFullYear();
+
+                                        //         sChangedDate = dd + "-" + mm + "-" + yyyy;
+                                        //     }
+                                        // }
+
+                                        // that.byId("oChngTmCHACON").setText(sChangedDate);
+                                        // var sChangedDate = "";
+
+                                        // if (oLatest.CHANGED_DATE) {
+                                        //     sChangedDate = String(oLatest.CHANGED_DATE);
+                                        // }
+
+                                        // that.byId("oChngTmCHACON").setText(sChangedDate);
+
+                                    } else {
+
+                                        that.byId("oChngByCHACON").setText("");
+                                        that.byId("oChngTmCHACON").setText("");
+                                    }
+
+                                    // ==================================
+                                    // Original result processing
+                                    // ==================================
+
+                                    // var temp = JSON.stringify(oData.results);
+
+                                    // that.clsResults = JSON.parse(temp);
+
+                                    // that.byId("classListCHACON").setModel(that.oModel);
+
+                                    // that.releventCls = that.clsResults;
+
+                                    // Original result processing
+                                    var temp = JSON.stringify(oData.results);
+
+                                    that.clsResults = JSON.parse(temp);
+
+                                    that.byId("classListCHACON").setModel(
+                                        that.oModel
+                                    );
+
+                                    that.releventCls = that.clsResults;
+
+                                    // that.getEnable();
+                                    // that.validation();
                                 }
 
-                                var temp = JSON.stringify(oData.results)
-                                that.clsResults = JSON.parse(temp);
-                                that.byId("classListCHACON").setModel(that.oModel);
-                                //   that.getEnable();
+                            },
 
-                                that.releventCls = that.clsResults
-                                //   that.validation();
+                            error: function (oData, error) {
+
+                                sap.ui.core.BusyIndicator.hide();
+
+                                MessageToast.show(
+                                    "Error While getting data"
+                                );
                             }
+                        }
+                    );
 
-
-                        },
-                        error: function (oData, error) {
-                            sap.ui.core.BusyIndicator.hide();
-                            MessageToast.show("Error While getting data");
-                        },
-                    });
                 } else {
-                    //  that.onClearReset()
-                    that.onResetPress()
+
+                    that.onResetPress();
                 }
             },
-
 
 
             oDownloadClassesData: function () {
@@ -8552,14 +8931,58 @@ sap.ui.define([
                             var aSorted = oData.results.sort(function (a, b) {
                                 return a.SEQUENCE - b.SEQUENCE;
                             });
+                            // aSorted.forEach(function (item) {
+                            //     if (item.CHANGED_DATE) {
+                            //         var oDate = new Date(item.CHANGED_DATE);
+                            //         item.CHANGED_DATE =
+                            //             String(oDate.getDate()).padStart(2, '0') + "-" +
+                            //             String(oDate.getMonth() + 1).padStart(2, '0') + "-" +
+                            //             oDate.getFullYear();
+                            //     }
+                            // });
+
+
+                            // 13-11-2026 overall date and time changes
                             aSorted.forEach(function (item) {
+
+                                var sDate = "";
+                                var sTime = "";
+
+                                // Format CHANGED_DATE
                                 if (item.CHANGED_DATE) {
-                                    var oDate = new Date(item.CHANGED_DATE);
-                                    item.CHANGED_DATE =
-                                        String(oDate.getDate()).padStart(2, '0') + "-" +
-                                        String(oDate.getMonth() + 1).padStart(2, '0') + "-" +
-                                        oDate.getFullYear();
+
+                                    if (typeof item.CHANGED_DATE === "string") {
+                                        sDate = item.CHANGED_DATE.substring(0, 10);
+                                    } else {
+                                        var oDate = new Date(item.CHANGED_DATE);
+
+                                        sDate =
+                                            oDate.getFullYear() + "-" +
+                                            String(oDate.getMonth() + 1).padStart(2, "0") + "-" +
+                                            String(oDate.getDate()).padStart(2, "0");
+                                    }
                                 }
+
+                                // Format CHANGED_TIME (Edm.Time)
+                                if (item.CHANGED_TIME) {
+
+                                    var iMilliseconds = item.CHANGED_TIME.ms || 0;
+
+                                    var iHours = Math.floor(iMilliseconds / 3600000);
+                                    var iMinutes = Math.floor((iMilliseconds % 3600000) / 60000);
+                                    var iSeconds = Math.floor((iMilliseconds % 60000) / 1000);
+
+                                    sTime =
+                                        String(iHours).padStart(2, "0") + ":" +
+                                        String(iMinutes).padStart(2, "0") + ":" +
+                                        String(iSeconds).padStart(2, "0");
+                                }
+
+                                // Combine date and time
+                                item.CHANGED_DATE = (sDate && sTime)
+                                    ? sDate + " T " + sTime
+                                    : sDate || "";
+
                             });
                             // selectedModel.setData({ items: aSorted });
                             that.orginalItemlength = aSorted.length;
