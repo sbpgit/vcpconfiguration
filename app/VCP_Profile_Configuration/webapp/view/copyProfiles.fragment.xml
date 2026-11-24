@@ -1,0 +1,66 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:macros="sap.fe.macros"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+>
+    <Dialog
+        id="CopyFragment"
+        titleAlignment="Center" contentWidth="600px">
+      <VBox >
+                               <HBox >
+                            <Label text="Prediction: " />
+                            <Text text="{oGModel>/PredModel}" class= "sapUiSmallMarginEnd"/>
+                               
+                            <Label text="Planning: "/>
+                            <Text text="{oGModel>/PlanModel}" />
+                             </HBox>
+                         
+                    
+                   
+                            <HBox >
+                            <Label text="Forecasting:" />
+                            <Text text="{oGModel>/ForecastModel}" />
+                         </HBox>
+                          </VBox>
+
+           
+            <Table
+                id="idCopyForAll"
+                selectionChange="onLocCopySelect"
+                mode="MultiSelect"
+                items="{path: '/copyLocData'}"
+                visible="true"
+            >
+                <columns>
+                    <Column>
+                        <Text text="{oGModel>/tableText}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <ObjectIdentifier text="{LOCATION_ID}" />
+                    </ColumnListItem>
+                </items>
+            </Table>
+       
+
+        <beginButton>
+            <Button
+                id="idPSave"
+                text="Copy"
+                type="Emphasized"
+                press="onCopyLoc"
+                visible="true"
+            />
+        </beginButton>
+        <endButton>
+            <Button
+                type='Default'
+                text="Close"
+                press="onClose"
+            />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

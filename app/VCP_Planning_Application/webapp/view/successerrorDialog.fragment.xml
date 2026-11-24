@@ -1,0 +1,77 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog title="Success and Error Log">
+        <IconTabBar id="iconTabBar" select="onTabSelect">
+            <!-- Success Tab -->
+            <items>
+                <IconTabFilter id="valid" text="Valid" key="validTab">
+                    <Table id="uniqueSuccessTable" items="{/uniqueArray}">
+                        <columns>
+                            <Column>
+                                <Text text="Planning Location" />
+                            </Column>
+                            <Column>
+                                <Text text="Factory Location" />
+                            </Column>
+                            <Column>
+                                <Text text="Demand Location" />
+                            </Column>
+                            <Column>
+                                <Text text="Product" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{PLAN_LOC}" />
+                                    <Text text="{FACTORY_LOC}" />
+                                    <Text text="{DEMAND_LOC}" />
+                                    <Text text="{PRODUCT_ID}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </IconTabFilter>
+                <!-- Error Log Tab -->
+                <IconTabFilter text="Invalid" key="invalidTab">
+                    <Table id="uniqueErrorTable" items="{/duplicatesArray}">
+                        <columns>
+                            <Column>
+                                <Text text="Planning Location" />
+                            </Column>
+                            <Column>
+                                <Text text="Factory Location" />
+                            </Column>
+                            <Column>
+                                <Text text="Demand Location" />
+                            </Column>
+                            <Column>
+                                <Text text="Product" />
+                            </Column>
+                            <!-- <Column>
+                                <Text text="Comments" />
+                            </Column> -->
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{PLAN_LOC}" />
+                                    <Text text="{FACTORY_LOC}" />
+                                    <Text text="{DEMAND_LOC}" />
+                                    <Text text="{PRODUCT_ID}" />
+                                    <!-- <Text text="{comments}"/> -->
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </IconTabFilter>
+            </items>
+        </IconTabBar>
+
+        <beginButton>
+            <Button id="oExcelSave" text="Continue and Save" type="Emphasized" press="onExcelSave" visible="true"/>
+        </beginButton>
+        <endButton>
+            <Button type='Default' text="{i18n>close}" press="closeErrorlogs"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

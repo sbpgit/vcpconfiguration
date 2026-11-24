@@ -1,0 +1,107 @@
+<mvc:View
+    controllerName="vcpapp.vcpcolorcodeuploadapp.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:dnd="sap.ui.core.dnd"
+    xmlns:u="sap.ui.unified"
+>
+    <Page
+        id="pageCC"
+        showHeader="false"
+    >
+      <content>
+        <Table
+            id="classuploadCC"
+            items="{path: '/results'}"
+            class="sapUiTableSCM"
+            growingScrollToLoad="true"
+            mode="SingleSelectMaster"
+            sticky="ColumnHeaders,HeaderToolbar"
+            rememberSelections="false">
+         <headerToolbar>
+        <OverflowToolbar >
+        <!-- <ToolbarSpacer ></ToolbarSpacer> -->
+        <HBox>
+        <SearchField id="classSearchCC" liveChange="oSrchbyclrname" placeholder=" Color Name" />
+        </HBox>
+        <ToolbarSpacer/>
+        <Button class="classHdr" icon="sap-icon://sys-help" id="idNav3PRD" press="onNavPress" type="Emphasized" tooltip="Help Document"/>
+        
+        </OverflowToolbar>
+        </headerToolbar>
+            <columns>
+                <Column hAlign="Left"  vAlign="Middle">
+                    <Text text="Order" />
+                </Column>
+                <Column vAlign="Middle">
+                    <Text text="Color Code" />
+                </Column>
+                <Column vAlign="Middle">
+                    <Text text="Color Name" />
+                </Column>
+            </columns>
+          <dragDropConfig>
+            <dnd:DragDropInfo 
+                    sourceAggregation="items" 
+                    targetAggregation="items" 
+                    dropPosition="Between" 
+                    drop="onDropcolorcode" />
+            </dragDropConfig>
+
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{ORDER}" />
+                        <Text text="{COLOR_CODE}" />
+                        <Text text="{COLOR_NAME}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+               </content> 
+        <footer>
+            <OverflowToolbar class="footer">
+                <u:FileUploader
+                    class="classBrowseButton"
+                    id="oColorcodeCC"
+                    sameFilenameAllowed="true"
+                    iconOnly="true"
+                    buttonOnly="true"
+                    visible="true"
+                    change="uploadData"
+                />
+                <MenuButton
+                    id="idColoruploadCC"
+                    type="Neutral"
+                    buttonMode="Split"
+                    useDefaultActionOnly="true"
+                    class="classOverlay"
+                    defaultAction="onPressBrowse"
+                    text="Upload"
+                    icon="sap-icon://upload"
+                >
+                    <menu>
+                        <Menu>
+                            <MenuItem
+                                text="{i18n>downloadTemp}"
+                                press="oDnload_codedata"
+                            />
+                        </Menu>
+                    </menu>
+                </MenuButton>
+
+                <ToolbarSpacer />
+                <Button
+                    id="idupdateCC"
+                    type='Emphasized'
+                    text="Update"
+                    enabled="true"
+                    press="onSeqUpdate"
+                />
+            </OverflowToolbar>
+        </footer>
+
+    </Page>
+
+</mvc:View>

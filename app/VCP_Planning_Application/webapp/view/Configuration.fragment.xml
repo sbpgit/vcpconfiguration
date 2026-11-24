@@ -1,0 +1,49 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ResponsivePopover
+		id="idConfigPopover"
+		title="Maintain Configuration"
+		class="sapUiContentPadding"
+		placement="Bottom" >
+		<beginButton>
+			<Button text="Save" press="onSaveConfiguration" />
+		</beginButton>
+		<endButton>
+			<Button text="Close" press="handleCloseConfiguration" />
+		</endButton>
+		<content>
+        <VBox>
+           <HBox>
+			<Label text="Seed Order Series" class="configLabel"/>
+            <Input id="idSeedOrderSeries" class="configInput"></Input>
+           </HBox>
+           <HBox>
+			<Label text="Seed Order Prefix" class="configLabel"/>
+            <Input id="idSeedOrderPrefix" class="configInput"></Input>
+           </HBox>
+           <HBox>
+			<Label text="IBP Planning Area" class="configLabel"/>
+            <Input id="idIBPPlanArea" class="configInput"></Input>
+           </HBox>
+           <HBox>
+			<Label text="IBP Prefix" class="configLabel"/>
+            <Input id="idIBPPrefix" class="configInput"></Input>
+           </HBox>
+		       <!-- <HBox>
+			<Label text="Maximum Snapshots" class="configLabel"/>
+            <Input id="idMaxsnapshots" class="configInput"></Input>
+           </HBox> -->
+		   <HBox>
+		     <CheckBox id="idValidity" text="Generate Unique ID Validity by Rules" select="handleChange" />
+		   </HBox>
+		    <HBox>
+		     <CheckBox id="idPvsnode" text="PVS Node Configuration " select="handleChange" />
+		   </HBox>
+		     <!-- <HBox>
+		     <CheckBox id="idPFintermediateAssem" text="InterMediate Assembly" select="handleChange" />
+		   </HBox> -->
+        </VBox>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

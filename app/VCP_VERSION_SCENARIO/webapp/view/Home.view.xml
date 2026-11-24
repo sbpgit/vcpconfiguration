@@ -1,0 +1,45 @@
+<mvc:View xmlns:table="sap.ui.table"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
+    xmlns:smartvariants="sap.ui.comp.smartvariants"
+    xmlns:f="sap.f" controllerName="vcpapp.vcpversionscenariomaintenance.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <f:DynamicPage id="dynamicPageVS">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <smartvariants:SmartVariantManagement id="PageVariantVS" persistencyKey="PageVariant" />
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader>
+            <HBox>           
+                <smartfilterbar:SmartFilterBar id="smartFilterBarVS" entitySet="getIbpVerScn" showClearOnFB="true" smartVariant="PageVariantVS" persistencyKey="PKeyFilterbar" liveMode="true" useToolbar="false">
+                <smartfilterbar:controlConfiguration>
+                <smartfilterbar:ControlConfiguration label="{i18n>ver}" key="VERSION" visibleInAdvancedArea="true" mandatory="auto" controlType="dropDownList"></smartfilterbar:ControlConfiguration>
+                <smartfilterbar:ControlConfiguration label="{i18n>scen}" key="SCENARIO" visibleInAdvancedArea="true" mandatory="auto" controlType="dropDownList"></smartfilterbar:ControlConfiguration>
+                </smartfilterbar:controlConfiguration>                
+                </smartfilterbar:SmartFilterBar>
+                 <!-- <Toolbar > -->
+                 <!-- <ToolbarSpacer/> -->
+                 <Button class="classHdr" icon="sap-icon://sys-help" id="idNav3PRD" press="onNavPress" type="Emphasized" tooltip="Help Document"/>
+                 <!-- </Toolbar> -->
+                 </HBox> 
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <smarttable:SmartTable id="smartTableVS" entitySet="getIbpVerScn" enableAutoBinding="true" enableAutoColumnWidth="true" smartFilterId="smartFilterBarVS" header="Items" showRowCount="true" smartVariant="PageVariantVS">
+                <smarttable:customToolbar>
+                    <Toolbar>
+                        <ToolbarSpacer />
+                        <Button id="idCreateVS" text="Create" press="onCreate" />
+                        <!-- <Button id="idDelete" text="Delete" enabled="false" press="onDeletePress" /> -->
+                    </Toolbar>
+                </smarttable:customToolbar>
+                <table:Table id="idTableVS" selectionMode="Single" rowSelectionChange="onTableSelection" />
+            </smarttable:SmartTable>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

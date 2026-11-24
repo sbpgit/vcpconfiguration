@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog title="Select Method">
+        <List  mode="SingleSelectMaster" itemPress="onListItemPress" items="{
+			path: '/methods'}">
+            <items>
+                <StandardListItem type="Active" title="{DESCRIPTION}" info="{METHOD_TYP}" />
+            </items>
+        </List>
+        <beginButton>
+            <Button text="{i18n>close}" press="onCloseDialog"/>
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

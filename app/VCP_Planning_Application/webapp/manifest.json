@@ -1,0 +1,228 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "vcpapp.vcpplanningapps1",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version":"2512.01.01"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.12.3",
+      "toolsId": "0a942b8a-60b1-45e3-803a-1ba6c208f966"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/v2/catalog/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "planningapps-display": {
+          "semanticObject": "planningapps",
+          "action": "display",
+          "title": "{{flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.136.18",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+          "sap.uxap": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "vcpapp.vcpplanningapps1.i18n.i18n"
+        }
+      },
+      "oGModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {
+          "defaultBindingMode": "TwoWay"
+        },
+        "preload": true
+      },
+      "PCModel": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true,
+          "groupId": "$direct"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "vcpapp.vcpplanningapps1.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "Home",
+          "pattern": "",
+          "target": [
+            "Home"
+          ]
+        },
+        {
+          "name": "CreateJob",
+          "pattern": "CreateJob",
+          "target": [
+              "CreateJob"
+          ]
+      },
+        {
+          "name": "Changelogs",
+          "pattern": "Changelogs",
+          "target": [
+            "Changelogs"
+          ]
+        },
+        {
+          "name": "ConfigMain",
+          "pattern": "ConfigMain",
+          "target": [
+            "ConfigMain"
+          ]
+        },
+        {
+          "name": "Network",
+          "pattern": "Network",
+          "target": [
+            "Network"
+          ]
+        },
+        {
+          "name": "NetworkDetail",
+          "pattern": "NetworkDetail",
+          "target": [
+            "NetworkDetail"
+          ]
+        }
+      ],
+      "targets": {
+        "Home": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Home",
+          "viewName": "Home"
+        },
+        "ConfigMain": {
+          "viewType": "XML",
+          "viewName": "ConfigMain"
+        },
+        "CreateJob": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": true,
+          "viewId": "CreateJob",
+          "viewName": "CreateJob"
+      },
+        "Changelogs": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": true,
+          "viewId": "Changelogs",
+          "viewName": "Changelogs"
+        },
+        "Network": {
+          "viewType": "XML",
+          "viewName": "Network"
+        },
+        "NetworkDetail": {
+          "viewType": "XML",
+          "viewName": "NetworkDetail"
+        },
+        "ConfigMaster": {
+          "viewType": "XML",
+          "viewName": "ConfigMaster"
+        },
+        "ConfigHome": {
+          "viewType": "XML",
+          "viewName": "ConfigHome"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "vcpapp.vcpplanningapps1.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "vcpconfiguration"
+  },
+  "sap.platform.cf": {
+    "oAuthScopes": [
+      "$XSAPPNAME.User",
+      "$XSAPPNAME.admin"
+    ],
+    "ui5VersionNumber": "1.136.18"
+  }
+}

@@ -1,0 +1,36 @@
+.customTableContainer {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 16px;
+    background-color: #f9f9f9;
+}
+.stickyToolbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+}
+.navListZIndex {
+    position: relative;   
+    z-index: 1100;        
+}
+/* .customFooterBar .sapMBarRight {
+  margin-right: 3rem;
+} */
+
+.customTableContainer .sapMTable {
+    border-radius: 8px;
+}
+
+.customTableContainer .sapMToolbar {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+}
+

@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core">
+    <Dialog id="mainDialogVS" title="Create" contentWidth="15rem">
+        <content>
+            <f:SimpleForm id="formVS">
+                <f:content >
+                    <VBox >
+                        <Label text="Version :"></Label>
+                        <Input id="idVersionVS" type="Text" required="true"></Input>
+                    </VBox>
+                    <VBox >
+                        <Label text="Version Name :"></Label>
+                        <Input id="idVerNameVS" type="Text" required="true"></Input>
+                    </VBox>
+                    <VBox >
+                        <Label text="Scenario :"></Label>
+                        <Input id="idScenarioVS" type="Text" required="true"></Input>
+                    </VBox>
+                    <VBox >
+                        <Label text="Scenario Name :"></Label>
+                        <Input id="idScenNameVS" type="Text" required="true"></Input>
+                    </VBox>
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <footer>
+            <Toolbar>
+                <content>
+                    <ToolbarSpacer />
+                    <Button id="idSaveVS" text="Save" press="onSave" type="Emphasized"/>
+                    <Button id="idCancelVS" text="Cancel" press="onCancel" />
+                </content>
+            </Toolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

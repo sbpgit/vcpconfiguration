@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <SelectDialog id="idClusterProfilePPM"  initialFocus="SearchField" title="Cluster Profiles"
+     rememberSelections="false" search="handleSearch" liveChange="handleSearch"
+        confirm="handleSelection" cancel="handleClose" multiSelect="false"  contentWidth="320px" items="{/results}"
+        selectionChange="handleScenChange" growing="false">
+        <StandardListItem title="{PROFILE}" description="{PRF_DESC}" type="Active"/>
+    </SelectDialog>
+</core:FragmentDefinition>

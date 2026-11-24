@@ -1,0 +1,253 @@
+<mvc:View xmlns:tnt="sap.tnt" xmlns:f2="sap.f" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" controllerName="vcpapp.vcpprofileconfiguration.controller.Home">
+	<Page id="idClassCharPA">
+
+		<headerContent >
+			<Button id="AddPA" text="Show Location" press="onShowLoc" icon="sap-icon://slim-arrow-left" textDirection="RTL" visible="false"/>
+			<SearchField liveChange="onLocationSearch" width="200px" placeholder="Location" id="idLocSearchPA"/>
+			<SearchField liveChange="onProductSearch" width="200px" placeholder="Product" id="idProdSearchPA" visible="false"/>
+			<Text id="LocHeaderPA"  visible="false"  ></Text>
+			<ToolbarSpacer/>
+			<!-- <Button id="copy" text="Copy" icon="sap-icon://copy" press="onCopy" /> -->
+			<Button id="idClearPA" text="Reset" press="onClear" type="Neutral"/>
+			<Button class="classHdr" icon="sap-icon://sys-help" id="idNav3PRD" press="onNavPress" type="Emphasized" tooltip="Help Document"/>
+		</headerContent>
+		<content>
+			<Table id="LocSectionPA" sticky="ColumnHeaders" items="{path: '/results'}" selectionChange="onLocSelect" mode="SingleSelectMaster"  growing="true"   growingScrollToLoad="true" growingFinished="onGrowingProduct"
+				rememberSelections="false">
+				<columns>
+					<Column >
+						<Label text="Location"/>
+					</Column>
+					<Column >
+						<Label text="Location Desc"></Label>
+					</Column>
+					<Column hAlign="Center" validationError="" >
+						<Label text="Prediction" required="true" />
+					</Column>
+					<Column hAlign="Center">
+						<Label text="Forecasting" required="true" />
+					</Column>
+					<Column hAlign="Center">
+						<Label text="Planning"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="Effective Option %"/>
+					</Column>
+						<Column hAlign="Center">
+						<Label text="Optimization" required="true"/>
+					</Column>
+						<Column visible="false" hAlign="Center">
+						<Label text="Period Profile"/>
+					</Column>
+					<Column hAlign="Center">
+						<Label text="Derived char"/>
+					</Column>		
+					<Column hAlign="Center" width="200px" >
+						<Label text="Changed By"/>
+					</Column>
+					<Column hAlign="Center"  width="50px">
+						<Label text=""></Label>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<!-- <ObjectIdentifier text="{LOCATION_ID}"> </ObjectIdentifier> -->
+						<!-- <Link text="{UNIQUE_ID}" press="onUniqueIdPress"/> -->
+						<Text text="{LOCATION_ID}"/>
+						<Text text="{LOCATION_DESC}"></Text>
+						<Select id="PredSelectPA" change="onLocS" items="{path: '/PredData'}" class="sapUiSmallMarginBegin sapUiTinyMarginEnd">
+							<core:Item key="{PROFILE}" text="{PROFILE}"  />
+						</Select>
+						<Select id="ForeCastSelectPA" change="onLocS" items="{path: '/ForeData'}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+							<core:Item key="{PROFILE}" text="{PROFILE}"/>
+						</Select>
+						<Select id="PlanSelectPA" change="onLocS" items="{path: '/PlanData'}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+							<core:Item key="{PLANNING_PROFILE}" text="{PLANNING_PROFILE}"/>
+						</Select>
+						<Select id="PlanCoeffPA" change="onLocS" items="{path: '/planCoeff'}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+							<core:Item key="{PROFILE}" text="{PROFILE}"/>
+						</Select>
+					<Select id="OptimizPA" change="onLocS" items="{path: '/OptimizeData'}"  class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+						<core:ListItem key="{PROFILE}" text="{PROFILE}"/>
+					
+					</Select>
+					<Select id="PeriodPA" change="onLocS" items="{path: '/PeriodData'}" visible="false" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+						<core:Item key="{PROFILE}" text="{PROFILE}"/>
+					</Select>
+					<Select id="DerivedCharPA" items="{derivedModel>/DerivedChar}" change="onLocS" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+						<core:ListItem key="{derivedModel>PROFILE}" text="{derivedModel>PROFILE}" />
+					</Select>
+						<!-- <ObjectIdentifier title="{USER}"  text="{NEW_DATE}" /> -->
+						<HBox justifyContent="Center">
+							<core:Icon id="userIcon" src="sap-icon://log" />
+						</HBox >
+						<Button id="copy" text="" icon="sap-icon://copy" press="onCopy"/>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<ResponsivePopover id="userPopover" placement="Left" showHeader="false">
+					<content>
+						<List items="{ path: '/resultsData'}">
+							<CustomListItem>
+								<VBox class="sapUiSmallMargin">
+									<Text text="Created By    : {CREATED_BY}" />
+									<Text text="Created Date  : {CREATED_AT}" />
+									<Text text="Created Time  : {CREATED_TIME}" />
+									<Text text="Changed By    : {CHANGED_BY}" />
+									<Text text="Changed Date  : {CHANGED_AT}" />
+									<Text text="Changed Time  : {CHANGED_TIME}" />
+								</VBox>
+							</CustomListItem>
+						</List>
+					</content>
+				</ResponsivePopover>
+
+			<VBox >
+				<Table id="ProdListPA"  sticky="ColumnHeaders,HeaderToolbar"  visible="false" items="{path: '/ProdModel'}" mode="SingleSelectMaster" growing="true"   growingScrollToLoad="true" growingFinished="onGrowingProduct"
+					selectionChange="onPivot" rememberSelections="false">
+					<headerToolbar>
+					<OverflowToolbar visible="false" >
+						<!-- CSS FOR  HEADER LOCATION -->
+						<Label id="headerLabelLocationPA" class= "sapUiLargeMarginBegin"  text="" visible="false"/>
+						<Label  class= "sapUiLargeMarginBegin"  text=""/>
+						<Label  class= "sapUiLargeMarginBegin"  text=""/>
+						<Label  class= "sapUiSmallMarginBegin"  text=""/>
+						<!-- <Label  class= "sapUiLargeMarginBegin"  text=""/> -->
+						
+						<!-- CSS FOR   PREDICTION -->
+				        <Label id="headerLabelPredictionPA" class= "sapUiLargeMarginBegin" text="" visible="false"/>
+					    <Label  class= "sapUiSmallMarginBegin"  text=""/>
+					
+					    <!-- CSS FOR   PLANNING -->
+					    <Label id="headerLabelPlanningPA"  class= "sapUiLargeMarginBegin"   text="" visible="false"/>
+					    <Label  class= "sapUiLargeMarginBegin"  text=""/>
+					
+					    <!-- CSS FOR   FORECASTING -->
+					    <Label id="headerLabelForecastingPA" class= "sapUiLargeMarginBegin"  text="" visible="false"/>
+					    <Label  class= "sapUiLargeMarginBegin"  text=""/>
+
+                        <!-- CSS FOR   METHODS -->
+					    <Label id="headerLabelMethodsPA"   class= "sapUiSmallMarginBegin"   text="" visible="false"/>
+						<!-- <Label  class= "sapUiLargeMarginBegin"  text=""/> -->
+						<!-- <Label  class= "sapUiLargeMarginBegin"  text=""/> -->
+
+					    <Label id="headerLabelOptimizPA"   class= ""   text="" visible="false"/>
+					</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column>
+							<Label id="headerLocationPA" text="Product"/>
+							<!-- <Link id="headerLocationPA" text="Product"></Link> -->
+						</Column>
+						<Column>
+							<Label text="Product Desc"/>
+						</Column>
+						<Column hAlign="Center">
+							<Label id="PredColPA" text="Prediction" />
+						</Column>
+						<Column hAlign="Center" width="225px">
+							<Label id="ForeColPA" text="Forecasting"  />
+						</Column>
+						<Column hAlign="Center">
+							<Label id="PlanColPA" text="Planning"/>
+						</Column>
+						<Column hAlign="Center">
+							<Label text="Effective Option %"/>
+						</Column>
+							<Column hAlign="Center" >
+						<Label text="Optimization Algorithm" />
+					</Column>
+					<Column hAlign="Center">
+						<Label text="Derived char"/>
+					</Column>	
+					<Column hAlign="Center" width="200px" >
+						<Label text="Changed By"/>
+					</Column>
+					<!-- <Column hAlign="Center" >
+						<Label text="Changed at"/>
+					</Column> -->
+						<Column width="50px">
+							<Label text="" ></Label>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<Text text="{PRODUCT_ID}"/>
+							<Text text="{PROD_DESC}"></Text>
+							<Select id="Pred1SelectPA" change="onLocS" items="{ path: '/PredData'}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+								<core:Item key="{PROFILE}" text="{PROFILE}"/>
+							</Select>
+							<Select id="ForeCast1SelectPA" change="onLocS" items="{ path: '/ForeData'}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+								<core:Item key="{PROFILE}" text="{PROFILE}"/>
+							</Select>
+							<Select id="Plan1SelectPA" change="onLocS" items="{ path: '/PlanData'}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+								<core:Item key="{PLANNING_PROFILE}" text="{PLANNING_PROFILE}"/>
+							</Select>
+							<Select id="PlanCoeff1PA" change="onLocS" items="{path: '/PlanCoEff1'}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+								<core:Item key="{PROFILE}" text="{PROFILE}"/>
+							</Select>
+									<Select id="Optimiz1PA" change="onLocS" items="{path: '/Optimization1'}"  class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+							    <core:ListItem key="{PROFILE}" text="{PROFILE}"/>
+                                               
+						</Select>
+						<Select id="DerivedPA" items="{derivedModel>/DerivedChar}" change="onLocS" class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+						<core:ListItem key="{derivedModel>PROFILE}" text="{derivedModel>PROFILE}" />
+						</Select>
+
+						<ObjectIdentifier title="{USER}" text="{NEW_DATE}" />
+							<Button id="copy1PA" text="" icon="sap-icon://copy" press="onCopy"/>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<ResponsivePopover id="userPopoverLOC" placement="Left" showHeader="false">
+					<content>
+						<List items="{ path: '/PrflData'}">
+							<CustomListItem>
+								 <VBox class="sapUiSmallMargin">
+
+        <HBox>
+            <Text text="Prediction Profile :" width="150px"/>
+            <Text text="{Prediction_Profile}" />
+        </HBox>
+
+        <HBox>
+            <Text text="Forecasting Profile :" width="150px"/>
+            <Text text="{Forecasting_Profile}" />
+        </HBox>
+
+        <HBox>
+            <Text text="Planning Profile :" width="150px"/>
+            <Text text="{Planning_Profile}" />
+        </HBox>
+
+        <HBox>
+            <Text text="Effective Option % :" width="150px"/>
+            <Text text="{Effective_Option_Profile}" />
+        </HBox>
+
+        <HBox>
+            <Text text="Optimization Algorithm :" width="150px"/>
+            <Text text="{Optimization_Algorithm}" />
+        </HBox>
+
+		 <HBox>
+            <Text text="Derived Profile :" width="150px"/>
+            <Text text="{Derived_Profile}" />
+        </HBox>
+
+    </VBox>
+							</CustomListItem>
+						</List>
+					</content>
+				</ResponsivePopover>
+			</VBox>
+		</content>
+		<footer>
+			<OverflowToolbar >
+				<ToolbarSpacer ></ToolbarSpacer>
+				<Button id="idAddingPA" text="Save" press="onSaveLoc" type="Emphasized"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

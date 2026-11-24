@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:plugins="sap.ui.table.plugins" core:require="{ handler: 'vcpapp/vcpdynamicfrozenfirm/ext/controller/ListReportExt.controller'}">
+    <!--register the relevant controller to fragment-->
+    <Dialog id="empDialogDFF" title="Create" contentWidth="20vw" contentHeight="auto" afterClose="closeBatchFragment">
+        <customHeader>
+            <Bar id="_IDGenBar1">
+                <contentLeft>
+                    <Title id="fragmentTitleDFF" text="Create" />
+                </contentLeft>
+            </Bar>
+        </customHeader>
+        <f:SimpleForm id="createVariantDFF" visible="true" editable="true" layout="ResponsiveGridLayout" adjustLabelSpan="false" emptySpanL="6" columnsL="1">
+            <f:content>
+                <VBox id="_IDGenVBox5DFF">
+                    <VBox id="_IDGenVBox123DFF">
+                        <Label id="_IDGenLabel121DFF" text="Group Id:" required="true" />
+                        <Input id="idGrpIdDFF" value="" />
+                    </VBox>                    
+                    <VBox id="_IDGenVBox1234DFF">
+                        <Label id="_IDGenLabel11DFF" text="Group Name:" required="true" />
+                        <Input id="idGrpNDFF" value="" />
+                    </VBox>
+                    <VBox id="_IDGenVBox1236DFF">
+                        <Label id="_IDGenLabel1211DFF" text="From Date:" required="true" />
+                        <DatePicker class="disabledInput" id="fromDateDFF" value="" displayFormat="yyyy-MM-dd" valueFormat="yyyy-MM-dd" change="handler.handleDateChange" />
+                    </VBox>
+                    <VBox id="_IDGenVBox1235DFF">
+                        <Label id="_IDGenLabel1212DFF" text="To Date:" required="true" />
+                        <DatePicker class="disabledInput1DFF" id="toDate" enabled="false" value="" displayFormat="yyyy-MM-dd" valueFormat="yyyy-MM-dd" change="handler.handleDateChange" />
+                    </VBox>
+
+                   </VBox>
+            </f:content>
+        </f:SimpleForm>
+        <buttons>
+            <Button id="idSaveBtnDFF" text="Save" press="handler.createOrder" type="Emphasized" />
+            <Button id="empClosebtnDFF" text="Cancel" type="Transparent" press="handler.closeBatchFragment" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

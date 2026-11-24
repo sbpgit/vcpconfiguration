@@ -1,0 +1,46 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:macros="sap.fe.macros"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+>
+    <Dialog
+        id="PrimaryfragPA"
+        titleAlignment="Center" contentWidth="200px">
+        <SearchField  id="idSearchPIdsPA" liveChange="onPrimarySearch"></SearchField>
+            <Table
+                id="idPrimListPA"
+                selectionChange=""
+                mode="MultiSelect"
+                items="{path: '/PrimeItems'}"
+                visible="true"
+                rememberSelections="true"
+            >
+                <columns>
+                    <Column>
+                        <Text text="Primary Ids" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <ObjectIdentifier text="{PRIMARY_ID}" />
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+            
+
+        <beginButton>
+        <Button id="idPrimaryFilterPA"  text="Select" type="Emphasized" press="onSelPrimeIds"></Button>
+            
+        </beginButton>
+        <endButton>
+            <Button
+                type='Default'
+                text="Close"
+                press="onPrimFragClose"
+            />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

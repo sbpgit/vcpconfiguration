@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0"
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Aggregation.V1.xml"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Analytics.xml"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Analytics" Namespace="com.sap.vocabularies.Analytics.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/v2/catalog/$metadata">
+        <edmx:Include Namespace="CatalogService"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml"
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="local"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotations Target="CatalogService.getIbpVerScn"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.SelectionFields">
+                    <Collection >
+                        <PropertyPath >VERSION</PropertyPath>
+                        <PropertyPath >SCENARIO</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="VERSION"/>
+                            <PropertyValue Property="Label" String="Version"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="VERSION_NAME"/>
+                            <PropertyValue Property="Label" String="Version Name"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="SCENARIO"/>
+                            <PropertyValue Property="Label" String="Scenario"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="SCENARIO_NAME"/>
+                            <PropertyValue Property="Label" String="Scenario Name"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CatalogService.getIbpVerScn/FACTORY_LOC"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Factory Location"></Annotation>
+            </Annotations>
+            <Annotations Target="CatalogService.getIbpVerScn/PRODUCT_ID"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Partial Product"></Annotation>
+            </Annotations>
+            <Annotations Target="CatalogService.getIbpVerScn/LOCATION_ID"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Demand Location"></Annotation>
+            </Annotations>
+            <Annotations Target="CatalogService.getIbpVerScn/REF_PRODID"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Config Product"></Annotation>
+            </Annotations>
+            <Annotations Target="CatalogService.getIbpVerScn/VERSION_NAME"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Version Name"></Annotation>
+            </Annotations>
+            <Annotations Target="CatalogService.getIbpVerScn/SCENARIO_NAME"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Scenario Name"></Annotation>
+            </Annotations>
+            <Annotations Target="CatalogService.getIbpVerScn/VERSION"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Version"></Annotation>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="CollectionPath" String="getIbpVerScn">
+                        </PropertyValue>
+                        <PropertyValue Property="Parameters">
+                            <Collection >
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"></PropertyValue>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"></PropertyValue>
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="ValueListProperty" String="VERSION_NAME"></PropertyValue>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION_NAME"></PropertyValue>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"></PropertyValue>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"></PropertyValue>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO_NAME"></PropertyValue>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO_NAME"></PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CatalogService.getIbpVerScn/SCENARIO"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Scenario"></Annotation>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="CollectionPath" String="getIbpVerScn">
+                        </PropertyValue>
+                        <PropertyValue Property="Parameters">
+                            <Collection >
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="VERSION"></PropertyValue>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION"></PropertyValue>
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="ValueListProperty" String="VERSION_NAME"></PropertyValue>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="VERSION_NAME"></PropertyValue>
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO"></PropertyValue>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO"></PropertyValue>
+                                </Record>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="ValueListProperty" String="SCENARIO_NAME"></PropertyValue>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SCENARIO_NAME"></PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

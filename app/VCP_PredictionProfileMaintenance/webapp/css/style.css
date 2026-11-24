@@ -1,0 +1,104 @@
+/* Enter your custom styles here *//* Enter your custom styles here */
+.boldText {
+    font-weight: bold !important;
+    text-align: center;
+    font-size: 30px !important;
+    margin:10px !important;
+}
+span#__xmlview0--idPage-title-inner {
+    font-weight: bold;
+}
+
+.sapMIBar.sapMTB .sapMBarChild {
+    margin-left: 40.25rem;
+}
+/* .sapUiSizeCompact .sapMSlt {
+    height: 1.625rem;
+    margin-top: 0.1875rem;
+    margin-bottom: 0.1875rem;
+    margin-left: 8rem;
+} */
+.sapUiFormResGrid>div {
+    padding: 0.5rem 0.5rem;
+    box-sizing: border-box;
+}
+
+span#__dialog0-title-inner {
+    font-weight: bold;
+}
+
+.sapUiRespGridMedia-Std-Tablet.sapUiFormResGridMain>div:not(.sapUiRespGridSpanM12):not(.sapUiFormResGridLastContM), .sapUiRespGridMedia-Std-Desktop.sapUiFormResGridMain>div:not(.sapUiRespGridSpanL12):not(.sapUiFormResGridLastContL), .sapUiRespGridMedia-Std-LargeDesktop.sapUiFormResGridMain>div:not(.sapUiRespGridSpanXL12):not(.sapUiFormResGridLastContXL) {
+    
+    box-sizing: border-box;
+    margin-left: 15rem;
+}
+.hdrBtnMarginHdr{
+    margin-left:1rem;
+}
+
+/* .selectClass{
+    margin-left:7.5rem
+} */
+
+.checkboxClass{
+    margin-left:4rem
+}
+
+.sapUiSizeCompact .sapMSFF {
+    height: 1.825rem;
+    padding-left: .5rem
+}
+
+.sapUiSizeCompact .sapMSFB {
+   
+    line-height: 1.825rem;
+}
+.stickyToolbar {
+    position: sticky; /* Make the toolbar sticky */
+    top: 0;           /* Stick to the top of the view */
+    z-index: 10;      /* Ensure it stays above other content */
+    background-color: white; /* Optional: Background to avoid overlap issues */
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.2); /* Optional: Shadow for visibility */
+}
+/* .StickySCroll{
+    overflow-y: auto;
+} */
+
+.stickyTableHeader {
+    position: sticky; /* Make the toolbar sticky */
+    top: 50px;           /* Stick to the top of the view */
+    z-index: 9;      /* Ensure it stays above other content */
+    background-color: white; /* Optional: Background to avoid overlap issues */
+    
+}
+
+/* .sapUiSizeCompact .sapMSwtCont .sapMSwt .sapMSwtText .sapMSwtLabel {
+    width: 1.75rem;
+    line-height: 1.125rem;
+  
+    font-size: 9px  !important;
+    font-weight: bolder;
+    padding :2px 0 0 1px;
+    
+} */
+
+/* .sapMSwtText .sapMSwtLabel {
+    height: 1.5rem;
+    line-height: 1.375rem;
+    padding: 2px 1px 1px 1.5px !important;
+    font-family: "72-Condensed-Bold","72","72full",Arial,Helvetica,sans-serif
+} */
+
+/* #idCharWe-switch
+{
+width:58px;
+height:25px;
+}
+#idCharWe-handle{
+    width:43px;
+    padding-top:10px;
+    padding-left: 2px;
+}
+#idCharWe-textoff{
+    width:33px;
+} */

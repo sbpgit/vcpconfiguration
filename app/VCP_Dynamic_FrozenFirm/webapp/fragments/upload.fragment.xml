@@ -1,0 +1,21 @@
+<core:FragmentDefinition  xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" core:require="{ handler: 'vcpapp/vcpdynamicfrozenfirm/ext/controller/ListReportExt.controller'}">
+	<Dialog title="Upload Excel" contentWidth="auto" id="idUploadDialogDFF" titleAlignment="Center">
+    <VBox alignContent="Center" alignItems="Center" >
+    	<u:FileUploader
+			id="fileUploaderDFF"
+			name="myFileUpload"
+			uploadUrl="upload/"
+			tooltip="Upload your file to the local server"
+			uploadComplete="handler.handleUploadComplete" fileType="xlsx,csv"/>
+		<Button
+			text="Upload File"
+			press="handler.handleUploadPress"/>
+            </VBox>
+			
+            <buttons>
+            <Button text="Cancel" id="idCancelDFF" press="handler.onCloseUpload"></Button>
+
+
+            </buttons>
+    </Dialog>
+</core:FragmentDefinition>

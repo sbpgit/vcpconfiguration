@@ -1,0 +1,402 @@
+<mvc:View
+    xmlns:f2="sap.f"
+    controllerName="vcpapp.vcpplanningapps1.controller.Home"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
+    xmlns:dnd="sap.ui.core.dnd"
+    xmlns:ux="sap.uxap"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:l="sap.ui.layout"
+    xmlns:layout="sap.ui.layout"
+    xmlns:unified="sap.ui.unified"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:s="sap.f"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:m="sap.m"
+    displayBlock="true"
+>
+    <!-- <Page id="Home" showHeader="false"> -->
+    <s:DynamicPage
+        id="Home"
+        showFooter="true"
+        headerExpanded="{/headerExpanded}"
+        toggleHeaderOnTitleClick="{/titleClickable}"
+    >
+     <s:title>
+        <s:DynamicPageTitle>
+          
+            <s:actions>
+               <Button class="classHdr" icon="sap-icon://sys-help" id="idNav3PRD" press="onNavPress" type="Emphasized" tooltip="Help Document"/>
+            </s:actions>
+        </s:DynamicPageTitle>
+    </s:title>
+        <s:content>
+           <VBox
+                class="iconTabBarContainer"
+              
+            >
+            <IconTabBar
+                id="idIconTabBarFiori2"
+                stretchContentHeight="true"
+                expanded="{device>/isNoPhone}"
+                class="sapUiResponsiveContentPadding"
+                select="onSelect"
+            >
+                <items>
+                    <IconTabFilter
+                        text="Global Configuration"
+                        key="Config"
+                    >
+                        <content>
+                            <VBox class="formContainer">
+                                <!-- Form Fields -->
+                                <f:SimpleForm
+                                    layout="ResponsiveGridLayout"
+                                    editable="true"
+                                    class="customForm"
+                                >
+                                    <f:content>
+                                        <Label text="Seed Order Series" />
+                                        <Input id="idSeedOrderSeries" />
+
+                                        <Label text="Seed Order Prefix" />
+                                        <Input id="idSeedOrderPrefix" />
+
+                                        <Label text="IBP Planning Area" />
+                                        <Input id="idIBPPlanArea" />
+
+                                        <Label text="IBP Prefix" />
+                                        <Input id="idIBPPrefix" />
+
+                                        <Label text="IBP Default Version" />
+                                        <Input id="Version" />
+
+                                        <Label text="IBP Default Scenario" />
+                                        <Input id="Scenario" />
+
+                                        <Label text=""></Label>
+                                        <CheckBox   id="idValidity" text="Generate Unique ID Validity by Rules" select="handleChange" ></CheckBox>
+                                        <Label text=""></Label>
+                                         <CheckBox id="idPvsnode" text="PVS Node Configuration" select="handleChange" />
+                                         <Label text=""></Label>
+                                        <CheckBox id="idPInterMediateAssem" text="Intermediate Assembly" select="handleChange" />
+
+                                          <!-- <VBox class="checkboxSection"> -->
+                                    <!-- <CheckBox
+                                        id="idValidity"
+                                        text="Generate Unique ID Validity by Rules"
+                                        select="handleChange"
+                                    /> -->
+                                   
+                                <!-- </VBox> -->
+                                       
+
+                                        <!-- <Label text="Telescopic Periodic" />
+                                        <Text text=" " /> -->
+                                        <core:Title text="Telescopic Periods" />
+
+                                        <Label
+                                            text="Week"
+                                            labelFor="idWeek"
+                                        />
+                                        <Input
+                                            id="idWeek"
+                                            liveChange="onLiveChangeNumberOnly"
+                                        />
+                                        <Text text="Months" />
+
+                                        <Label
+                                            text="Month"
+                                            labelFor="idmonth"
+                                        />
+                                        <Input
+                                            id="idmonth"
+                                            liveChange="onLiveChangeNumberOnly"
+                                        />
+                                        <Text text="Months" />
+
+                                        <Label
+                                            text="Quarterly"
+                                            labelFor="idQuart"
+                                        />
+                                        <Input
+                                            id="idQuart"
+                                            liveChange="onLiveChangeNumberOnly"
+                                        />
+                                        <Text text="Months" />
+                                    </f:content>
+                                </f:SimpleForm>
+
+                                <!-- Additional Controls -->
+                              
+
+                                <VBox
+                                    class="buttonSection"
+                                    alignItems="End"
+                                >
+                                    <Button
+                                        width="100px"
+                                        text="Save"
+                                        type="Success"
+                                        class="saveButton"
+                                        press="onSaveConfiguration"
+                                    />
+                                </VBox>
+                            </VBox>
+
+                            <!-- <f2:FlexibleColumnLayout id="fcl1" /> -->
+                            <!-- <f:FlexibleColumnLayout id="fcl" /> -->
+                        </content>
+                    </IconTabFilter>
+
+                    <IconTabFilter
+                        text="Location Configuration"
+                        key="Config"
+                    >
+                        <Bar>
+                            <contentLeft>
+                                <HBox height="30px">
+                                    <Button
+                                        id="leftMenu"
+                                        icon="sap-icon://menu2"
+                                        tooltip="Side Menu Expand/Collapse"
+                                        press="expandBegin"
+                                        type="Transparent"
+                                        class="oMenu"
+                                    />
+
+                                    <Title
+                                        text="Locations"
+                                        class="title"
+                                    />
+                                </HBox>
+                            </contentLeft>
+                        </Bar>
+                        <content>
+                            <f2:FlexibleColumnLayout id="fcl" />
+                            <!-- <f:FlexibleColumnLayout id="fcl" /> -->
+                        </content>
+                    </IconTabFilter>
+
+                    <IconTabFilter
+                        id="Network"
+                        text="Network Maintenance"
+                        key="network"
+                    >
+                        <!-- <Toolbar > -->
+                        <content>
+                            <layout:VerticalLayout>
+                                <VBox class="NetworkFieldCSS">
+                                    <Label text="" />
+                                    <SearchField
+                                        id="headSearch"
+                                        width="250px"
+                                        liveChange="handleSearch1"
+                                        placeholder="Location/Product"
+                                    />
+                                </VBox>
+                            </layout:VerticalLayout>
+                            <layout:VerticalLayout>
+                                <VBox class="NetworkFieldCSS">
+                                    <Label
+                                        text="Demand Location"
+                                        labelFor="dloc"
+                                    />
+                                    <MultiInput
+                                        id="dloc"
+                                        value=""
+                                        width="250px"
+                                        showValueHelp="true"
+                                        valueHelpOnly="true"
+                                        valueHelpRequest="handleValueHelp"
+                                    />
+                                </VBox>
+                            </layout:VerticalLayout>
+                            <layout:VerticalLayout>
+                                <VBox class="NetworkFieldCSS">
+                                    <Label
+                                        text="Factory Location"
+                                        labelFor="floc"
+                                    />
+                                    <MultiInput
+                                        id="floc"
+                                        value=""
+                                        width="250px"
+                                        showValueHelp="true"
+                                        valueHelpOnly="true"
+                                        valueHelpRequest="handleValueHelp"
+                                    />
+                                </VBox>
+                            </layout:VerticalLayout>
+                            <layout:VerticalLayout>
+                                <VBox class="NetworkFieldCSS">
+                                    <Label
+                                        text="Product"
+                                        labelFor="prod"
+                                    />
+                                    <MultiInput
+                                        id="prod"
+                                        value=""
+                                        width="250px"
+                                        showValueHelp="true"
+                                        valueHelpOnly="true"
+                                        valueHelpRequest="handleValueHelp"
+                                    />
+                                </VBox>
+                            </layout:VerticalLayout>
+                            <layout:VerticalLayout>
+                                <VBox class="NetworkFieldCSS">
+                                    <Label text="" />
+                                    <HBox>
+                                        <Button
+                                            text="Go"
+                                            type="Emphasized"
+                                            press="onGetData"
+                                        />
+                                        <Button
+                                            text="Reset"
+                                            type="Transparent"
+                                            press="onResetData"
+                                        />
+                                    </HBox>
+                                </VBox>
+                            </layout:VerticalLayout>
+                        </content>
+                        <!-- </Toolbar> -->
+                        <content>
+                            <Page
+                                showFooter="true"
+                                showHeader="false"
+                            >
+                                <Table
+                                    id="orderList"
+                                    sticky="ColumnHeaders"
+                                    mode="MultiSelect"
+                                    itemPress="onhandlePress"
+                                 
+                                    items="{/TableData}"
+                                    selectionChange="onhandlePress"
+                                >
+                                    <headerToolbar>
+                                        <Toolbar>
+                                            <content>
+                                                <ToolbarSpacer />
+                                                <Button
+                                                    text="Create"
+                                                    id="oNewcreate"
+                                                    press="onCreateJob"
+                                                />
+                                                <Button
+                                                    text="Copy"
+                                                    id="copy"
+                                                    press="onCopy"
+                                                    enabled="false"
+                                                />
+                                                <Button
+                                                    text="Delete"
+                                                    id="delete"
+                                                    press="onDelete"
+                                                    enabled="false"
+                                                />
+                                            </content>
+                                        </Toolbar>
+                                    </headerToolbar>
+
+                                    <columns>
+                                        <Column
+                                            hAlign="Left"
+                                            vAlign="Middle"
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true"
+                                        >
+                                            <Text text="Location/Desc." />
+                                        </Column>
+                                        <Column
+                                            hAlign="Left"
+                                            vAlign="Middle"
+                                            minScreenWidth="Tablet"
+                                            demandPopin="true"
+                                        >
+                                            <Text text="Product/Desc." />
+                                        </Column>
+                                        <Column
+                                            hAlign="Left"
+                                            demandPopin="true"
+                                            minScreenWidth="Tablet"
+                                            vAlign="Middle"
+                                        >
+                                            <Text
+                                                text="Planning Location/Desc."
+                                            />
+                                        </Column>
+                                        <Column
+                                            hAlign="Left"
+                                            demandPopin="true"
+                                            minScreenWidth="Tablet"
+                                            vAlign="Middle"
+                                        >
+                                            <Text
+                                                text="Factory Location/Desc."
+                                            />
+                                        </Column>
+                                        <Column
+                                            width="5rem"
+                                            hAlign="Left"
+                                            demandPopin="true"
+                                            minScreenWidth="Tablet"
+                                        >
+                                            <Text text="" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem class="scroll">
+                                            <cells>
+                                                <ObjectIdentifier
+                                                    text="{DEMAND_LOC}"
+                                                    title="{DEMAND_DESC}"
+                                                />
+                                                <ObjectIdentifier
+                                                    text="{PRODUCT_ID}"
+                                                    title="{PROD_DESC}"
+                                                />
+                                                <ObjectIdentifier
+                                                    text="{PLAN_LOC}"
+                                                    title="{PLANLOC_DESC}"
+                                                />
+                                                <ObjectIdentifier
+                                                    text="{FACTORY_LOC}"
+                                                    title="{LOCATION_DESC}"
+                                                />
+                                                <Button
+                                                    icon="sap-icon://navigation-right-arrow"
+                                                    press="onNavigate"
+                                                    type="Default"
+                                                    tooltip="Go to more details"
+                                                />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </Page>
+                        </content>
+                    </IconTabFilter>
+                    
+                </items>
+            </IconTabBar>
+                 <!-- <Button
+                    id="idChangeLogsBtn"
+                    text="Change Logs"
+                    icon="sap-icon://history"
+                    type="Transparent"
+                    press="onChangeLogsPress"
+                    class="iconTabBarRightBtn"
+                /> -->
+                 </VBox>
+        </s:content>
+    </s:DynamicPage>
+
+    
+    <!-- </Page> -->
+</mvc:View>

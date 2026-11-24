@@ -1,0 +1,38 @@
+
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog id="createdmd" afterClose="onDialogClose" contentHeight="600px" contentWidth="70px">
+        <VBox>
+            <!-- SearchField -->
+            <SearchField id="searchField" width="95%" search="handleSearch1" liveChange="handleSearch1" placeholder="Search..." />
+
+            <!-- Select All -->
+            <HBox>
+                <CheckBox id="selectAllCheckbox" select="onSelectAllToggle" class="allselection" />
+                <Text text="Locations" class="bold-text" />
+            </HBox>
+
+            <!-- List -->
+            <List
+                id="itemList"
+                items="{/aItems}"
+                mode="MultiSelect"
+                rememberSelections="true"
+                includeItemInSelection="true"  
+                selectionChange="onItemSelectionChange">
+
+                <StandardListItem
+                    title="{= ${DEMAND_LOC} ? ${DEMAND_LOC} : ${LOCATION_ID} }"
+                    description="{= ${DEMAND_DESC} ? ${DEMAND_DESC} : ${LOCATION_DESC} }"
+                    type="Active" />
+            </List>
+        </VBox>
+
+        <!-- Footer Buttons -->
+        <beginButton>
+            <Button text="OK" press="handleSelection" />
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" press="onDemandDialogClose" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,102 @@
+<mvc:View
+    controllerName="vcpapp.vcpplanningapps1.controller.NetworkDetail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:m="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:ux="sap.uxap"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:u="sap.ui.unified"
+>
+    <ux:ObjectPageLayout id="ObjectPageLayout">
+        <ux:headerTitle>
+            <ux:ObjectPageDynamicHeaderTitle>
+                <ux:expandedHeading>
+                    <VBox>
+                        <Title
+                            text="{/DEMAND_DESC}"
+                            titleStyle="H1"
+                        />
+                        <Text text="{/PROD_DESC}" />
+                    </VBox>
+                </ux:expandedHeading>
+                <ux:snappedHeading>
+                    <VBox>
+                        <Title text="{/DEMAND_DESC}" />
+                        <Text text="{/PROD_DESC}" />
+                    </VBox>
+                </ux:snappedHeading>
+                <ux:navigationActions>
+                    <Button
+                        type="Transparent"
+                        text="Back"
+                        press="NavBack"
+                    />
+                </ux:navigationActions>
+            </ux:ObjectPageDynamicHeaderTitle>
+        </ux:headerTitle>
+        <ux:headerContent>
+            <Text text="" />
+        </ux:headerContent>
+        <ux:sections >
+            <ux:ObjectPageSection titleUppercase="false">
+                <ux:subSections>
+                    <ux:ObjectPageSubSection >
+                    
+                        <ux:blocks>
+                            <VBox>
+                                
+                                <l:Grid defaultSpan="XL4 L4 M4 S12">
+                                    <VBox>
+                                        <Label text="Demand Location:" />
+                                        <Text text="{/DEMAND_LOC}" />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label
+                                            text="Demand Location Description:"
+                                        />
+                                        <Text text="{/DEMAND_DESC}" />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label text="Planning Location:" />
+                                        <Text text="{/PLAN_LOC}" />
+                                    </VBox>
+                                    <VBox>
+                                        <Label
+                                            text="Planning Location Description:"
+                                        />
+                                        <Text text="{/PLANLOC_DESC}" />
+                                    </VBox>
+
+                                    <VBox>
+                                        <Label text="Product:" />
+                                        <Text text="{/PRODUCT_ID}" />
+                                    </VBox>
+                                    <VBox>
+                                        <Label text="Product Description:" />
+                                        <Text text="{/PROD_DESC}" />
+                                    </VBox>
+                                    <VBox>
+                                        <Label text="Factory Location:" />
+                                        <Text text="{/FACTORY_LOC}" />
+                                    </VBox>
+                                    <VBox>
+                                        <Label
+                                            text="Factory Loc Description:"
+                                        />
+                                        <Text text="{/LOCATION_DESC}" />
+                                    </VBox>
+                                </l:Grid>
+                            </VBox>
+                        </ux:blocks>
+                    </ux:ObjectPageSubSection>
+                </ux:subSections>
+            </ux:ObjectPageSection>
+        </ux:sections>
+    </ux:ObjectPageLayout>
+</mvc:View>

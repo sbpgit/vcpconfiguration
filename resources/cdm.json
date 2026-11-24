@@ -234,6 +234,10 @@
             {
               "appId": "vcpibpapis",
               "vizId": "IbpApi-display"
+            },
+            {
+              "appId": "vcpapp.vcpplanningapps1",
+              "vizId": "planningapps-display"
             }
           ]
         }

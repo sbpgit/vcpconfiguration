@@ -1,0 +1,97 @@
+<mvc:View
+    controllerName="vcpapp.vcpplanningapps1.controller.Changelogs"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Page
+        showNavButton="true"
+        navButtonPress="onBack"
+        title="Change Logs"
+    >
+        <Table
+            id="oTablelogsPAC"
+            sticky="ColumnHeaders"
+            items="{/LogData}"
+        >
+            <headerToolbar>
+                <OverflowToolbar>
+                    <content>
+                        <SearchField
+                            id="SearchIdPAC"
+                            width="20%"
+                            search="onSearch"
+                            liveChange="onSearch"
+                            placeholder="Search"
+                            
+                        />
+                    </content>
+                </OverflowToolbar>
+            </headerToolbar>
+            <columns>
+                <Column
+                    hAlign="Left"
+                    vAlign="Middle"
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                >
+                    <Text text="Parameter Name" />
+                </Column>
+                <Column
+                    hAlign="Left"
+                    vAlign="Middle"
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                >
+                    <Text text="Location Id" />
+                </Column>
+                <Column
+                    hAlign="Left"
+                    demandPopin="true"
+                    minScreenWidth="Tablet"
+                    vAlign="Middle"
+                >
+                    <Text text="Old Value" />
+                </Column>
+                <Column
+                    hAlign="Left"
+                    demandPopin="true"
+                    minScreenWidth="Tablet"
+                    vAlign="Middle"
+                >
+                    <Text text="New Value" />
+                </Column>
+                <Column
+                    hAlign="Left"
+                    demandPopin="true"
+                    minScreenWidth="Tablet"
+                    vAlign="Middle"
+                >
+                    <Text text="Changed Date" />
+                </Column>
+
+                <Column
+                    hAlign="Left"
+                    demandPopin="true"
+                    minScreenWidth="Tablet"
+                    vAlign="Middle"
+                >
+                    <Text text="Changed By" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem class="scroll">
+                    <cells>
+                        <ObjectIdentifier text="{DESCRIPTION}" />
+                        <ObjectIdentifier text="{LOCATION_ID}" />
+                        <ObjectIdentifier text="{OLD_VALUE}" />
+                        <ObjectIdentifier text="{NEW_VALUE}" />
+                        <ObjectIdentifier text="{CHANGED_DATE}" />
+                        <ObjectIdentifier text="{CHANGED_BY}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Page>
+</mvc:View>

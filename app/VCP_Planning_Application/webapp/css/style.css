@@ -1,0 +1,442 @@
+/* Enter your custom styles here */
+.sapMITBContent {
+    border-bottom: 0;
+}
+
+.checkboxSection {
+    margin-left: 0.5rem;
+    /* Adjust according to labelSpanL */
+}
+
+/* Desktop: align with input (based on label span, e.g., labelSpanL=3) */
+@media (min-width: 1024px) {
+    .checkboxSection {
+        margin-left: 9.5rem;
+        /* Adjust according to labelSpanL */
+    }
+}
+
+
+@media (max-width: 1330px) {
+    .checkboxSection {
+        margin-left: 0.5rem;
+        /* Adjust according to labelSpanL */
+    }
+}
+
+/* Tablet */
+@media (min-width: 600px) and (max-width: 1023px) {
+    .checkboxSection {
+        margin-left: 0.5rem;
+        /* Adjust based on labelSpanM */
+    }
+}
+
+/* Mobile: no left margin */
+@media (max-width: 599px) {
+    .formContainer {
+        padding: 10px;
+        width: 95% !important;
+    }
+
+    .checkboxSection {
+        margin-left: 0;
+        align-items: stretch;
+    }
+}
+
+.buttonSection {
+    margin-right: 15px;
+}
+
+.iconTabBarContainer {
+    width: 100%;
+    position: relative;
+    /* width: 100% !important; */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* button aligned inside the white IconTabBar header */
+/* .iconTabBarRightBtn {
+    position: absolute;
+    top: 0.25rem;
+
+    right: 0.5rem;
+ 
+    margin: 0;
+    z-index: 10;
+    background: white;
+   
+} */
+/* .customIconTabBar{
+    width:90% !important
+} */
+
+/* Custom IconTabBar CSS */
+/* .customIconTabBar .sapMITBFiltersContainer {
+    display: flex;
+    justify-content: flex-start;
+} */
+
+/* .customIconTabBar .rightTabBtn {
+    margin-left: auto !important; */
+/* Push it to right end */
+/* } */
+
+.rightTabBtn {
+    margin-right: auto !important;
+}
+
+/* .customIconTabBar .rightTabBtn .sapMITBFilterText {
+    font-weight: bold;
+    color: #0a6ed1; */
+/* Make it look like a button */
+/* } */
+
+
+
+
+.scrollbar {
+    overflow: hidden !important;
+}
+
+/* .sapUiResponsiveContentPadding {
+    padding: 1rem !important; /* Might be causing extra space */
+/* } */
+
+.hbox1 {
+    margin-right: 300px;
+}
+
+.classBrowseButton {
+    opacity: 0;
+    height: 0 !important;
+    width: 0 !important;
+
+}
+
+/* .productBox {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 3px;
+    background-color: #f9f9f9;
+    width: 180px; 
+} */
+
+.productBox {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    background-color: #f9f9f9;
+    width: 180px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.productBox:hover {
+    background-color: #e0e0e0;
+}
+
+.selectedBox {
+    background-color: #b3e5fc;
+    border-color: #0288d1;
+}
+
+
+
+.abc {
+    margin-left: 20px;
+
+}
+
+.palnning {
+    padding-right: 50px;
+}
+
+/* .container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 5px 10px #eeeded;
+    box-shadow: 10px 10px 5px #eae9e9;
+    margin-top: 3%;
+    margin-left: 32%;
+    width: 35%;
+    color: #556b82;
+    font-size: .875rem;
+    font-family: "72", "72full", Arial, Helvetica, sans-serif;
+    font-weight: normal;
+
+} */
+
+.configLabel {
+    margin-top: 0.3rem;
+    margin-left: 0.5rem;
+    width: 20rem;
+    /* font-size: medium; */
+}
+
+.configInput {
+    margin-left: 0.5rem;
+    width: 30rem;
+}
+
+.right-button {
+    position: relative;
+    left: 402px;
+    /* Adjust this value to set the margin from the right */
+}
+
+.gap {
+    gap: 8px;
+}
+
+/* @media only screen and (min-width: 1880px) {
+    .container {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 10px 10px 5px #eae9e9;
+        margin-top: 3%;
+        margin-left: 32%;
+        width: 25%;
+        color: #556b82;
+        font-size: .875rem;
+        font-family: "72", "72full", Arial, Helvetica, sans-serif;
+        font-weight: normal;
+
+    }
+
+    .right-button {
+        position: relative;
+        left: 350px;
+       
+    }
+
+    .configInput {
+        width: 40rem;
+    }
+} */
+
+#searchField {
+    margin-left: 12px
+}
+
+#selectAllCheckbox {
+    margin-left: 8px
+}
+
+#selectAllCheckbox {
+    font-weight: bold !important;
+}
+
+.bold-text {
+    margin-top: 8px !important;
+    ;
+    font-weight: bold;
+}
+
+.sapUiSizeCompact .sapUxAPObjectPageSectionHeader,
+.sapUxAPObjectPageSectionHeader {
+    height: 0rem !important;
+    line-height: 0rem !important;
+}
+
+.sapUxAPObjectPageContainerNoBar>.sapUxAPObjectPageSection:first-child:not(.sapUxAPObjectPageSectionNoTitle) {
+    margin-top: 0rem !important;
+}
+
+/* .sapMLabelTextWrapper{
+    font-weight: bold !important;
+} */
+
+/* Enter your custom styles here */
+
+.hbox1 {
+    margin-right: 300px;
+}
+
+* {
+    scrollbar-width: thin;
+    /*"auto"or "thin"*/
+    scrollbar-color: #888 #f1f1f1;
+    /*thumb and track color*/
+}
+
+
+.classBrowseButton {
+    opacity: 0;
+    height: 0 !important;
+    width: 0 !important;
+
+}
+
+/* .productBox {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 3px;
+    background-color: #f9f9f9;
+    width: 180px; 
+} */
+
+.productBox {
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    padding: 10px;
+    margin: 5px;
+    background-color: #f9f9f9;
+    width: 180px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.productBox:hover {
+    background-color: #e0e0e0;
+}
+
+.selectedBox {
+    background-color: #b3e5fc;
+    border-color: #0288d1;
+}
+
+.NetworkFieldCSS {
+    margin-left: 15px;
+    margin-bottom: 7px;
+
+}
+
+.palnning {
+    padding-right: 30px;
+}
+
+.configLabel {
+    margin-top: 0.3rem;
+    margin-left: 2.5rem;
+    /* width: 20rem; */
+}
+
+.configInput {
+    margin-left: 2.5rem;
+    margin-top: -5px !important;
+    /* width: 50% !important; */
+}
+
+.gap {
+    gap: 8px;
+}
+
+.form {
+
+    width: 35% !important;
+    /* margin-left: 25rem !important; */
+}
+
+.oInputfiled {
+    width: 5rem !important
+}
+
+
+.stickyToolbar {
+    position: sticky;
+    top: 0;
+    background: white;
+    /* Ensures it does not overlap with content */
+    z-index: 1000;
+    /* Keeps it above other elements */
+    padding: 50px;
+    display: flex;
+    /* Ensures horizontal layout */
+    gap: 10px;
+    /* Provides spacing between fields */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* Optional shadow */
+}
+
+
+
+
+/* @media only screen and (max-width: 600px) {
+    .customForm {
+        width: 100% !important;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+   .oMenu {
+        visibility: visible !important;
+    }
+    .stickyToolbar {
+       
+        padding: 500px !important;
+   
+    }
+
+
+} */
+
+/* @media only screen and (min-width: 1536px) {
+    .customForm {
+        margin-left: 25rem !important;
+        width: 40% !important;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .oMenu{
+        visibility:  hidden !important;
+    }
+
+} */
+.formContainer {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 10px 10px 5px #eae9e9;
+    margin: 0% auto !important;
+    width: 65%;
+    /* max-width: 600px; */
+    color: #556b82;
+    font-size: .875rem;
+    font-family: "60", "72full", Arial, Helvetica, sans-serif;
+}
+
+.Ntwork{
+    margin-bottom: 10px !important ;
+    margin-right: 10px !important ;
+}
+
+/* @media only screen and (min-device-width: 768px) and (max-device-width: 1880px) and (-webkit-min-device-pixel-ratio: 1) {
+    .formContainer {
+        display: flex;
+        justify-content: center;
+    
+        align-items: center;
+   
+
+    }
+
+    .customForm {
+    
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .saveButton {
+        width: 100%;
+        
+    }
+
+
+} */

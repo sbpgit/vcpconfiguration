@@ -1,0 +1,310 @@
+<!-- <mvc:View controllerName="vcpapp.vcppredictionprofilemaintenance.controller.Home" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content />
+    </Page>
+</mvc:View> -->
+
+<mvc:View controllerName="vcpapp.vcppredictionprofilemaintenance.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core" displayBlock="true"
+    xmlns="sap.m">
+    <Page  >
+        <customHeader>
+            <Toolbar id="_IDGenToolbar1PPM">
+                <Title id="profTitlePPM"  class="boldText"></Title>
+                <!-- <Button class="hdrBtnMarginHdr" icon="sap-icon://sys-help" id="idNav" press="onNavPress" type="Emphasized" tooltip="Help Document"/> -->
+                <ToolbarSpacer id="_IDGenToolbarSpacer1PPM"/>
+                <Button id="idAddPPM" text="Create" icon="sap-icon://add" press="onCreate" tooltip = "Create"/>
+                <Button id="idCopyPPM" text="Copy" icon="sap-icon://copy" press="onCreate" tooltip = "Copy"/>
+                <Button id="idEditPPM" text="Edit" icon="sap-icon://edit" press="onCreate" tooltip = "Edit"/>
+                <Button id="idDeletePPM" text="Delete" icon="sap-icon://delete" press="onDelete" tooltip = "Delete"/>
+                <!-- <Select id="idProfile" change="onPrifileChange" selectedKey="A" width="130px" class="selectClass">
+                        <core:ListItem key="A" text="No Data"/>
+                        <core:ListItem key="P" text="{i18n>mlr}"/>
+                        <core:ListItem key="F" text="{i18n>hgbt}"/>
+                        <core:ListItem key="C" text="{i18n>varma}"/>
+                    </Select> -->
+                <Button class="hdrBtnMarginHdr" icon="sap-icon://sys-help" id="idNavPPM" press="onNavPress" type="Emphasized" tooltip="Help Document"/>
+            </Toolbar>
+        </customHeader>
+         
+        <SearchField id="headSearchPPM" liveChange="onSearch" placeholder="Profile or Description" class="stickyToolbar"  />
+        <IconTabBar id="idIconTabBarInlineModePPM" headerMode="Inline" expanded="{device>/isNoPhone}" select="onTabSelect"  class="SapUi5Icon Bar" >
+            <items >
+                <IconTabFilter text="Prediction Profile" key="PrePro">
+                    <VBox >
+                        <ScrollContainer width="auto" height="500px" horizontal="false" vertical="true" class="StickySCroll">
+                            <Table id="idPredPPM" items="{path: '/results'}" mode="SingleSelectLeft" sticky="ColumnHeaders"  selectionChange="onBtnSelect">
+                                <columns>
+                                    <Column hAlign="Left" vAlign="Middle">
+                                        <Text text="{i18n>prof}" />
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Middle">
+                                        <Text text="{i18n>method}"/>
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Middle">
+                                        <Text text="{i18n>profDesc}"/>
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Middle">
+                                        <Text text="{i18n>auth}"/>
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Middle">
+                                        <Text text=""/>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem >
+                                        <cells>
+                                            <ObjectIdentifier title="{PROFILE}" />
+                                            <Text text="{METHOD}"/>
+                                            <Text text="{PRF_DESC}"/>
+                                            <Text text="{AUTHORIZATION}"/>
+                                            <Button icon="sap-icon://display" tooltip="Display" press="onParameters" iconDensityAware="false" type="Transparent"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </ScrollContainer>
+                    </VBox>
+                </IconTabFilter>
+                <IconTabFilter text="Planning/Cluster profile"  key="PCPro">
+                    <VBox >
+                      
+                            <HBox justifyContent="Center" alignItems="Center"  class="stickyToolbar {
+">
+                            <!-- <ToolbarSpacer/> -->
+                            <SegmentedButton id="idSegmPPM" selectedKey="Planning" selectionChange="onChange">
+                                <items>
+                                    <SegmentedButtonItem text="Planning Profiles" key="Planning" width="60%"/>
+                                    <SegmentedButtonItem text="Cluster Profiles" key="cluster" width="50%" />
+                                </items>
+                            </SegmentedButton>
+                            <!-- <ToolbarSpacer/> -->
+
+                        </HBox>
+                        <HBox justifyContent="End" alignItems="End">
+                            <Button id="idPlanBtPPM" text="Create Planning Profile" press="onAddtData" tooltip="Add new Profile" />
+                        </HBox>
+                        <ScrollContainer width="auto"  height="500px" horizontal="false" vertical="true" class="StickySCroll">
+                            <Table id="idPlanProfilePPM" updateFinished="onTableUpdate" items="{path: '/PlanningProfiles'}" mode="Delete" delete="deletePlanningProfiles" rememberSelections="false"  sticky="ColumnHeaders">
+                                <!-- <headerToolbar>
+                                <OverflowToolbar height="80px">
+                                <SearchField id="newTabSearch" search="oHomesearch" liveChange="oHomesearch" width="200px" placeholder="Cluster, Planning Profile" />
+                                <ToolbarSpacer />
+                                <Button text="Reset" type="Transparent" press="onResetData" tooltip="Reset" />
+                                <Button icon="sap-icon://add" press="onAddtData" tooltip="Add new Profile" />
+                                </OverflowToolbar>
+                              </headerToolbar>                             -->
+                                <columns>
+                                    <Column hAlign="Center" vAlign="Middle">
+                                        <Text text="Planning Profile" />
+                                    </Column>
+                                    <Column hAlign="Center" vAlign="Middle">
+                                        <Text text="Clustering Profile" />
+                                    </Column>
+
+                                    <Column hAlign="Center" vAlign="Middle">
+                                        <Text text="Min Primary ID's" />
+                                    </Column>
+                                    <Column hAlign="Center" vAlign="Middle">
+                                        <Text text="Min Clusters Count" />
+                                    </Column>
+                                    <Column hAlign="Center" width="auto" vAlign="Middle">
+                                        <Text text="Max Clusters  Count" />
+                                    </Column>
+                                    <Column hAlign="Center" width="auto" vAlign="Middle">
+                                        <Text text="Primary ID's %" />
+                                    </Column>
+                                    <Column hAlign="Center" vAlign="Middle" width="100px">
+                                        <Text text="Past Weeks" />
+                                    </Column>
+                                    <Column hAlign="Center" vAlign="Middle" width="auto">
+                                        <Text text="Future Weeks" />
+                                    </Column>
+                                    <Column hAlign="Center" vAlign="Middle" width="auto">
+                                        <Text text="Threshold DMD" />
+                                    </Column>
+                                    <Column hAlign="Center" vAlign="Middle" width="auto">
+                                        <Text text="" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <cells>
+
+                                            <Text text= "{PLANNING_PROFILE}" />
+                                            <Text text= "{CLUSTERING_PROFILE}" />
+                                            <Text text= "{MIMIMUM_PRIMARY_IDS}" />
+                                            <Text text= "{MINIMUM_CLUSTERS}" />
+                                            <Text text= "{MAXIMUM_CLUSTERS}" />
+                                            <Text text= "{PERCENTAGE}" />
+                                            <Text text= "{PAST_PERIODS}" />
+                                            <Text text= "{FUTURE_PERIODS}" />
+                                            <Text text= "{THRESHOLD_DMD}" />
+                                            <Button icon="sap-icon://edit" press="onEditData" tooltip="Edit Profile" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                            <Table id="idClusPPM" items="{path: '/results'}" mode="SingleSelectLeft" sticky="HeaderToolbar" selectionChange="onBtnSelect" visible="false">
+                                <columns>
+                                    <Column hAlign="Left" vAlign="Middle">
+                                        <Text text="{i18n>prof}" />
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Middle">
+                                        <Text text="{i18n>method}"/>
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Middle">
+                                        <Text text="{i18n>profDesc}"/>
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Middle">
+                                        <Text text="{i18n>auth}"/>
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Middle">
+                                        <Text text=""/>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem >
+                                        <cells>
+                                            <ObjectIdentifier title="{PROFILE}" />
+                                            <Text text="{METHOD}"/>
+                                            <Text text="{PRF_DESC}"/>
+                                            <Text text="{AUTHORIZATION}"/>
+                                            <Button icon="sap-icon://display" tooltip="Display" press="onParameters" iconDensityAware="false" type="Transparent"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </ScrollContainer>
+                    </VBox>
+                </IconTabFilter>
+                <IconTabFilter text="Forecasting" key="forPro">
+                    <VBox >
+                        <ScrollContainer width="auto"  height="500px" horizontal="false" vertical="true" class="StickySCroll">
+                       
+                            <Table id="idForcastPPM" items="{path: '/results'}" mode="SingleSelectLeft" sticky="ColumnHeaders" selectionChange="onBtnSelect">
+                                <columns>
+                                    <Column hAlign="Left" vAlign="Middle">
+                                        <Text text="{i18n>prof}" />
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Middle">
+                                        <Text text="{i18n>method}"/>
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Middle">
+                                        <Text text="{i18n>profDesc}"/>
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Middle">
+                                        <Text text="{i18n>auth}"/>
+                                    </Column>
+                                    <Column hAlign="Left" vAlign="Middle">
+                                        <Text text=""/>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem >
+                                        <cells>
+                                            <ObjectIdentifier title="{PROFILE}" />
+                                            <Text text="{METHOD}"/>
+                                            <Text text="{PRF_DESC}"/>
+                                            <Text text="{AUTHORIZATION}"/>
+                                            <Button id="idDisplay" icon="sap-icon://display" tooltip="Display" press="onParameters" iconDensityAware="false" type="Transparent"/>
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </ScrollContainer>
+                    </VBox>
+                </IconTabFilter>
+                <IconTabFilter text="Optimization" key="Optimize" >
+                    <Table id="idOptPPM" items="{path: '/results'}" mode="SingleSelectLeft" sticky="HeaderToolbar" selectionChange="onBtnSelect">
+                        <columns>
+                            <Column  hAlign="Left" vAlign="Middle">
+                                <Text  text="{i18n>Profile}" />
+                            </Column>
+
+                            <Column  hAlign="Left" vAlign="Middle">
+                                <Text  text="{i18n>profDesc}" />
+                            </Column>
+                            <Column  hAlign="Left" vAlign="Middle">
+                                <Text  text="{i18n>Algorithm}" />
+                            </Column>
+                            <Column  hAlign="Left" vAlign="Middle">
+                                <Text  text="{i18n>Factor}"/>
+                            </Column>
+                            <Column  hAlign="Left" vAlign="Middle">
+                                <Text  text="{i18n>CharWeight}"/>
+                            </Column>
+
+                            <Column  hAlign="Left" visible="false" vAlign="Middle">
+                                <Text  text="{i18n>CreateBy}"/>
+                            </Column>
+
+                            <Column  hAlign="Left" visible="false" vAlign="Middle">
+                                <Text  text="{i18n>changeBy}"/>
+                            </Column>
+
+                  
+                        </columns>
+                        <items>
+                            <ColumnListItem >
+                                <cells>
+                                    <ObjectIdentifier  title="{PROFILE}" />
+                                    <Text text="{PROFILE_DESC}"></Text>
+                                    <Text  text="{ALGORITHM}" />
+                                    <Text  text="{OPTIMIZATION_FACTOR}"/>
+                                    <Text  text="{CHAR_WEIGHTAGE}"/>
+                          
+                          
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </IconTabFilter>
+                <IconTabFilter text="Derived Characteristics" key="DerivedCharPPM">
+                    <VBox>
+                        <HBox justifyContent="End" alignItems="End">
+                            <Button id="idDerCharBtnPPM" text="Create Derived Characteristic Profile" press="onAddDerivedChar" tooltip="Add new Derived Characteristic Profile" />
+                        </HBox>
+                    <ScrollContainer width="auto" height="500px" horizontal="false" vertical="true">
+                            <Table id="idDerivedCharPPM"
+                    items="{derivedModel>/DerivedChar}"
+                   sticky="ColumnHeaders">
+                            <columns>
+                                    <Column hAlign="Center">
+                                        <Text text="Profile Name"/>
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="Description"/>
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="Past Sales Orders"/>
+                                    </Column>
+                                    <Column hAlign="Center" vAlign="Middle" width="auto">
+                                        <Text text="Actions"/>
+                                        </Column>
+                                    </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{derivedModel>PROFILE}"/>
+                                        <Text text="{derivedModel>PROFILE_DESC}"/>
+                                        <Text text="{derivedModel>PAST_SALES_ORD}"/>
+                                        <HBox justifyContent="Center" alignItems="Center">
+                                            <Button icon="sap-icon://edit" press="onEditDerivedChar" tooltip="Edit" type="Transparent"/>
+                                            <Button icon="sap-icon://delete" press="onDeleteDerivedChar" tooltip="Delete" type="Transparent"/>
+                                        </HBox>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </ScrollContainer>
+                    </VBox>
+                </IconTabFilter>
+            </items>
+        </IconTabBar>
+
+      
+    </Page>
+</mvc:View>
+

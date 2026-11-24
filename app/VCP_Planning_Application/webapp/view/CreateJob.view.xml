@@ -1,0 +1,119 @@
+<mvc:View controllerName="vcpapp.vcpplanningapps1.controller.CreateJob"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns="sap.m">
+    <Page id="page" showNavButton="true" navButtonPress="onBack" titleAlignment="Center">
+        <content>
+            <Wizard id="CreateWizard" class="sapUiResponsivePadding--header sapUiResponsivePadding--content" complete="wizardCompletedHandler">
+                <WizardStep id="TempTypeStep" title="Planning, Factory Location" validated="false" activate="onSelTemp">
+                    <HBox class="sapUiSmallMargin">
+                        <VBox>
+                            <Label labelFor="pln" text="Planning Location"/>
+                            <Input id="pln"  class = "palnning" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" liveChange="onInputChange"/>
+                        </VBox>
+                        <VBox>
+                            <Label labelFor="fct" text="Factory Location"/>
+                            <Input id="fct" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" liveChange="onInputChange"/>
+                        </VBox>
+                    </HBox>
+                </WizardStep>
+                <WizardStep id="scheduleStep" title="Demand Locations" validated="false" activate="onRecurrence">
+                    <VBox class="sapUiSmallMargin">
+                        <Label labelFor="dem" text="Demand Location" visible="false"/>
+                        <MultiInput id="dem" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" liveChange="onInputChange"/>
+                    </VBox>
+                </WizardStep>
+                <WizardStep id="idParameters" title="Products" validated="false" visible="true">
+                    <VBox class="sapUiSmallMargin" height="50px">
+                        <!-- <VBox>
+                            <Input id="searchField" width="40%" placeholder="Search Products" liveChange="onSearch"/>
+                        </VBox> -->
+                        <HBox>
+                            <!-- First table for available products -->
+                            <ScrollContainer width="100%" height="400px" vertical="true">
+                                <Table id="availableProductsTable" selectionChange="onSelectionChange" headerText="All Products List" class="table1" items="{/products}" width="90%" growing="true" growingThreshold="1000" mode="MultiSelect">
+                                    <headerToolbar>
+                                        <Toolbar >
+                                          <Text 
+                                            id="idProdPLA" 
+                                            text="Total Products ({= ${/products}.length })">
+                                        </Text>
+                                            <Input id="handleTableSearch"  placeholder="Search Products" liveChange="onSearch"/>
+                                            <ToolbarSpacer ></ToolbarSpacer>
+                                         
+                                            <Button id="idShowSelected" text="Show Selected" press="handleShowSelect"></Button>
+                                        </Toolbar>
+                                    </headerToolbar>
+                                    <columns>
+                                        <!-- <Column width="80px">
+                                            <CheckBox id="selectAllCheckbox1" select="onSelectAll" text="All"/>
+                                        </Column> -->
+                                        <Column>
+                                            <Text text="Product Description"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="Product ID"/>
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem press="_onSelectItem">
+                                            <cells>
+                                                <!-- <CheckBox selected="{PRODUCT_SELECTED}" select="onProductSelect"/> -->
+                                                <Text text="{PROD_DESC}"/>
+                                                <Text text="{PRODUCT_ID}"/>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </ScrollContainer>
+
+                            <!-- Second table for selected products -->
+                            <!-- <ScrollContainer width="100%" height="400px" vertical="true">
+                                <Table id="selectedProductsTable" headerText="Selected Products" items="{/selectedProducts}" width="90%" growing="true" growingThreshold="5">
+                                    <columns>
+                                        <Column>
+                                            <Text text="Product Description"/>
+                                        </Column>
+                                        <Column>
+                                            <Text text="Product ID"/>
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <Text text="{PROD_DESC}"/>
+                                                <Text text="{PRODUCT_ID}"/>
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </ScrollContainer> -->
+                        </HBox>
+                    </VBox>
+                </WizardStep>
+
+            </Wizard>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <!-- <Button text="{i18n>downloadTemp}" press="downloadTemplate" type="Ghost"></Button> -->
+                <u:FileUploader class="classBrowseButton" id="FileUploaderId" sameFilenameAllowed="true" iconOnly="true" buttonOnly="true" visible="true" change="uploadData" />
+                <MenuButton id="idMenu" type="Neutral" buttonMode="Split" useDefaultActionOnly="true" class="classOverlay" defaultAction="onPressBrowse" text="Upload" icon="sap-icon://upload">
+                    <menu>
+                        <Menu>
+                            <MenuItem text="{i18n>downloadTemp}" press="downloadTemplate"/>
+                        </Menu>
+                    </menu>
+                </MenuButton>
+                <Button id="idupdate" text="Reset" press="onReset"/>
+                <ToolbarSpacer/>
+                <Button id="idcreate" text="Create" press="onSave" enabled="true" type="Emphasized" />
+
+                <!-- <Button id="idupdate" text="Update Job" press="onJobCreate" visible="false"/> -->
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

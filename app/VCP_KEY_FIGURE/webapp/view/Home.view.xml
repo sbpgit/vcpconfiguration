@@ -1,0 +1,69 @@
+<mvc:View xmlns:table="sap.ui.table"
+    xmlns:core="sap.ui.core"
+    xmlns:smartvariants="sap.ui.comp.smartvariants"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
+    xmlns:f="sap.f" controllerName="vcpapp.vcpkeyfiguremaintenance.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <f:DynamicPage id="idDynamicPageKFM">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <smartvariants:SmartVariantManagement id="PageVariantKFM" persistencyKey="PageVariant" showShare="true" showExecuteOnSelection="true"></smartvariants:SmartVariantManagement>
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader>
+            <HBox>
+                <smartfilterbar:SmartFilterBar id="smartFilterBarKFM" useToolbar="false" entitySet="getKeyFigureMaster" liveMode="true" showClearOnFB="true" showFilterConfiguration="true" persistencyKey="PKeyFilterbar" smartVariant="PageVariantKFM" initialized="onFilterBarInit" clear="onClear"></smartfilterbar:SmartFilterBar>
+            <Button class="classHdr" icon="sap-icon://sys-help" id="idNav3PRD" press="onNavPress" type="Emphasized" tooltip="Help Document"/>
+            </HBox>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <IconTabBar id="idIconTabBarKFM" select="onChangeTable">
+                <items>
+                    <IconTabFilter text="Percentages" icon="sap-icon://commission-check" iconColor="Marker">
+                        <smarttable:SmartTable id="smartTablePKFM" height="auto" width="100%" backgroundDesign="Transparent" displayInline="true" enableAutoBinding="true" entitySet="getKeyFigureMaster" smartFilterId="smartFilterBarKFM" tableType="Table" smartVariant="PageVariantKFM" persistencyKey="PKeyTable" useVariantManagement="true" header="Items" showRowCount="true" enableAutoColumnWidth="true" showFullScreenButton="true" showTablePersonalisation="false">
+                            <smarttable:customToolbar>
+                                <Toolbar>
+                                    <ToolbarSpacer ></ToolbarSpacer>
+                                    <Button id="btnMultiCreateKFM" text="Create" press="onCreatOrUpdatePress" />
+                                    <Button id="btnMultiEditKFM" text="Update" enabled="{= ${gModel>/tableP}}" press="onCreatOrUpdatePress" />
+                                </Toolbar>
+                            </smarttable:customToolbar>
+                            <table:Table id="idTableKFM" selectionMode="Single" rowSelectionChange="onTableSelection"></table:Table>
+                        </smarttable:SmartTable>
+                    </IconTabFilter>
+                    <IconTabFilter text="Quantities" icon="sap-icon://compare" iconColor="Marker">
+                        <smarttable:SmartTable id="smartTableQKFM" height="auto" width="100%" backgroundDesign="Transparent" displayInline="true" enableAutoBinding="true" entitySet="getKeyFigureMaster" smartFilterId="smartFilterBarKFM" tableType="Table" smartVariant="PageVariantKFM" persistencyKey="PKeyTable" useVariantManagement="true" header="Items" showRowCount="true" enableAutoColumnWidth="true" showFullScreenButton="true" showTablePersonalisation="false">
+                            <smarttable:customToolbar>
+                                <Toolbar>
+                                    <ToolbarSpacer ></ToolbarSpacer>
+                                    <Button id="btnMultiCreateQKFM" text="Create" press="onCreatOrUpdateQC" />
+                                    <Button id="btnMultiEditQKFM" text="Update" enabled="{= ${gModel>/tableQ}}" press="onCreatOrUpdateQC" />
+                                </Toolbar>
+                            </smarttable:customToolbar>
+                            <table:Table id="idTableQKFM" selectionMode="Single" rowSelectionChange="onTableSelection"></table:Table>
+                        </smarttable:SmartTable>
+                    </IconTabFilter>
+                    <IconTabFilter text="Calculated" icon="sap-icon://simulate" iconColor="Marker">
+                        <smarttable:SmartTable id="smartTableCKFM" height="auto" width="100%" backgroundDesign="Transparent" displayInline="true" enableAutoBinding="true" entitySet="getKeyFigureMaster" smartFilterId="smartFilterBarKFM" tableType="Table" smartVariant="PageVariantKFM" persistencyKey="PKeyTable" useVariantManagement="true" header="Items" showRowCount="true" enableAutoColumnWidth="true" showFullScreenButton="true" showTablePersonalisation="false">
+                            <smarttable:customToolbar>
+                                <Toolbar>
+                                    <ToolbarSpacer ></ToolbarSpacer>
+                                    <Button id="btnMultiCreateCKFM" text="Create" press="onCreatOrUpdateQC" />
+                                    <Button id="btnMultiEditCKFM" text="Update" enabled="{= ${gModel>/tableC}}" press="onCreatOrUpdateQC" />
+                                </Toolbar>
+                            </smarttable:customToolbar>
+                            <table:Table id="idTableCKFM" selectionMode="Single" rowSelectionChange="onTableSelection"></table:Table>
+                        </smarttable:SmartTable>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </f:content>
+    </f:DynamicPage>
+
+</mvc:View>

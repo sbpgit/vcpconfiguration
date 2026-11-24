@@ -1,0 +1,72 @@
+<core:FragmentDefinition
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Dialog contentWidth="700px" showHeader="false">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:Form editable="true">
+                    <f:title>
+                        <core:Title id="idDerivedtitle" text="Creation of Derived Characteristic" />
+                    </f:title>
+                    <f:layout>
+                        <f:ResponsiveGridLayout
+							labelSpanXL="4"
+							labelSpanL="3"
+							labelSpanM="4"
+							labelSpanS="12"
+							adjustLabelSpan="false"
+							emptySpanXL="0"
+							emptySpanL="4"
+							emptySpanM="0"
+							emptySpanS="0"
+							columnsXL="2"
+							columnsL="1"
+							columnsM="1"
+							singleContainerFullSize="false" />
+                    </f:layout>
+                    <f:formContainers>
+                        <f:FormContainer>
+                            <f:formElements>
+                                <f:FormElement label="Profile Name">
+                                    <f:fields>
+                                        <Input id="idProfileNamePPM" maxLength="30" liveChange="onProfileNameLiveChange" required="true" />
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Description">
+                                    <f:fields>
+                                        <Input id="idDescPPM" maxLength="100"/>
+                                    </f:fields>
+                                </f:FormElement>
+                                <f:FormElement label="Past Sales Orders">
+                                    <f:fields>
+                                        <Input 
+											id="idPastSalesPPM"
+											type="Number" placeholder="In Months"
+											liveChange="onDerValue" required="true"/>
+                                    </f:fields>
+                                </f:FormElement>
+                            </f:formElements>
+                        </f:FormContainer>
+                    </f:formContainers>
+                </f:Form>
+            </VBox>
+        </content>
+        <beginButton>
+            <Button 
+				id="confirmDerivedPPM"
+				type="Accept"
+				text="Confirm"
+				press="onSaveDerivedChar" />
+        </beginButton>
+        <endButton>
+            <Button 
+				type="Reject"
+				text="Cancel"
+				press="onDerClose" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>  

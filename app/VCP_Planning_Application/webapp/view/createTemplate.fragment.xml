@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog type="Standard" title="{i18n>downloadTemp}" contentWidth="400px" id="templateDialog">
+        <content>
+            <VBox class="sapUiLargeMarginBeginEnd sapUiLargeMarginTopBottom">
+                <Label text="{i18n>selectDates}" labelFor="DRS1" />
+                <DateRangeSelection id="DRS1" value="{
+				'type': 'sap.ui.model.type.DateInterval',
+				'parts': [
+					{
+						'type': 'sap.ui.model.type.Date',
+						'path': '/start'
+					},
+					{
+						'type': 'sap.ui.model.type.Date',
+						'path': '/end'
+					}
+				]
+			}" placeholder="{i18n>dtPlaceHolder}" change="handleChange" />
+            </VBox>
+        </content>
+        <beginButton>
+            <Button type='Accept' text="{i18n>dwn}" press="downloadTemplate"></Button>
+        </beginButton>
+        <endButton>
+            <Button type='Reject' text="{i18n>close}" press="closeTemplate"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,71 @@
+<core:FragmentDefinition xmlns:form="sap.ui.layout.form" xmlns="sap.m"
+   xmlns:sf="sap.ui.comp.smartform"
+   xmlns:core="sap.ui.core"
+   xmlns:smartmultiedit="sap.ui.comp.smartmultiedit">
+   <Dialog title="EditMultiple" class="sapUiContentPadding" id="multipleEditingDialogKFM" contentWidth="15rem" horizontalScrolling="false" titleAlignment="Center">
+      <content>
+      <form:SimpleForm >
+      <form:content>
+      <VBox >
+      <Label text="Key Figure ID :"></Label>
+      <Input id="Key_IDKFM"  type="Number"  required="true" enabled="{= ${gModel>/isCreate} }" ></Input>
+      </VBox>
+       <VBox >
+      <Label text="Key Figure Name :"></Label>
+      <Input id="KeY_Fig_NameKFM" type="Text" required="true"></Input>
+      </VBox>
+      <VBox >
+      <VBox >
+      <Label text="Key Figure Desc :"></Label>
+      <Input id="KeY_Fig_DescKFM" type="Text" required="true"></Input>
+      </VBox>
+      <Label text="Priority Order :"></Label>
+      <Input id="PriorityOrderKFM" type="Number" required="true"></Input>
+      </VBox>
+      <VBox >
+      <Label text="Display Order :"></Label>
+      <Input id="OrderByKFM" type="Number" required="true"></Input>
+      </VBox>
+      
+      </form:content>
+      </form:SimpleForm>
+         <!-- <smartmultiedit:Container entitySet="getKeyFigureMaster" id="multiEditContainer">
+            <smartmultiedit:layout>
+               <sf:SmartForm editable="true">
+                  <sf:layout>
+                     <sf:Layout labelSpanM="12" labelSpanL="12" labelSpanXL="12" />
+                  </sf:layout>
+                  <sf:groups>
+                     <sf:Group>
+                        <sf:GroupElement>
+                           <sf:elements>
+                              <smartmultiedit:Field propertyName="KEY_FIG_ID"/>
+                           </sf:elements>
+                        </sf:GroupElement>
+                        <sf:GroupElement>
+                           <sf:elements>
+                              <smartmultiedit:Field propertyName="KEY_FIG_DESC"/>
+                           </sf:elements>
+                        </sf:GroupElement>
+                        <sf:GroupElement>
+                           <sf:elements>
+                              <smartmultiedit:Field propertyName="PRIORITY_ORDER"/>
+                           </sf:elements>
+                        </sf:GroupElement>
+                        <sf:GroupElement>
+                           <sf:elements>
+                              <smartmultiedit:Field propertyName="DISPLAY_ORDER"/>
+                           </sf:elements>
+                        </sf:GroupElement>
+                     </sf:Group>
+                  </sf:groups>
+               </sf:SmartForm>
+            </smartmultiedit:layout>
+         </smartmultiedit:Container> -->
+      </content>
+      <buttons>
+         <Button id="iBtn" text="Save" press="onDialogSaveButton" type="Emphasized"/>
+         <Button text="Cancel" press="onCloseDialog"/>
+      </buttons>
+   </Dialog>
+</core:FragmentDefinition>

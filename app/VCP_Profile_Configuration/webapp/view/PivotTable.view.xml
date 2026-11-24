@@ -1,0 +1,52 @@
+<mvc:View xmlns:tnt="sap.tnt" xmlns:f2="sap.f" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table"
+	controllerName="vcpapp.vcpprofileconfiguration.controller.PivotTable">
+	<Page >
+		<headerContent>
+			<Button id="idBackPA" icon="sap-icon://nav-back" press="onBack" textDirection="LTR" visible="true"/>
+      <Label id="idPidcountPA" text="Primary ID's" />
+			<MultiInput required="true" id="idPrimarysPA" showValueHelp="true" placeholder="Primary id" change="onSelPrimary" width="120px"
+				valueHelpOnly="true" showSuggestion="true" valueHelpRequest="onHandleSelection" textDirection="Inherit"></MultiInput>
+				<Label  id="idProdPivotPA" text="Product:"/>
+				<Input required="true" id="idProdPA" showValueHelp="true" placeholder="Product" change="onProdSelection" width="200px" valueHelpOnly="true" showSuggestion="true" valueHelpRequest="onHandleSelection" textDirection="Inherit"> </Input>
+        <Label text="Past Weeks" />
+			<Input id="idPastPA" value="" required="true" type="Number" width="60px" placeholder="Past Weeks"></Input>
+      <Label text="Future Weeks" />
+			<Input id="idFuturePA" value="" required="true" type="Number" width="60px" placeholder="Future Weeks"></Input>
+			<Button id="onGetDataPA" text="Go" press="onGetData" type="Emphasized"></Button>
+			<Button id="idRestorePA" text="Reset" press="onRestore" type="Default" visible="true"/>
+			            <Button id="idColumnSortPA" text="Sort" icon="sap-icon://sort" iconFirst="true" press="onColumnSort"></Button>
+ 
+			<Button id="idSelectColumnPA" text="Columns" icon="sap-icon://table-column" iconFirst="true" press="onSelectColumns"></Button>
+			<ToolbarSpacer/>
+		</headerContent>
+		<!-- <content> -->
+		<html:div id="mainDivPA" class="mainDivClass"/>
+		<!-- </content> -->
+		<footer>
+			<OverflowToolbar >
+				<Button id="targetPA" textDirection="LTR" icon="sap-icon://information" iconFirst="false" type="Transparent">
+					<dependents>
+						<ResponsivePopover id="popover" placement="Top" showHeader="false">
+							<HBox >
+								<Text text="" class="GreenCheckBox"/>
+								<Text text=" Already Saved ID's" class="Rem"></Text>
+							</HBox>
+							<HBox >
+								<Text text="" class="YellowCheckBox"/>
+								<Text text=" Selection to Save ID's"></Text>
+							</HBox>
+							<HBox >
+								<Text text="" class="RedCheckBox"/>
+								<Text text=" UnSelection of Saved ID's"></Text>
+							</HBox>
+						</ResponsivePopover>
+					</dependents>
+				</Button>
+				<Label text="Selected Primary Ids are used as Planning Relevant Primary Ids."></Label>
+				<ToolbarSpacer/>
+				<Button id="idButtonPA" text="Save" press="onSaveB" type="Emphasized"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

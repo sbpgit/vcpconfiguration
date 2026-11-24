@@ -1,0 +1,202 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "vcpapp.vcpprofileconfiguration",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "2512.01.01"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.15.7",
+      "toolsId": "86808987-8ca7-464b-8b0d-191803b033da"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/v2/catalog/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "palService": {
+        "uri": "/v2/pal/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/PalService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "ProConfig-Display": {
+          "semanticObject": "ProConfig",
+          "action": "Display",
+          "title": "{{flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.120.41",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "vcpapp.vcpprofileconfiguration.i18n.i18n"
+        }
+      },
+      "oGModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {
+            "defaultBindingMode": "TwoWay"
+        },
+        "preload": true
+    },
+      "BModel": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true,
+          "groupId": "$direct"
+        }
+      },
+      "PModel":{
+        "dataSource": "palService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true,
+          "groupId": "$direct"
+      }
+    }
+  },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        },
+        {
+          "uri": "css/pivot.css"
+        }
+      ],
+      
+      "js":[
+        {
+          "uri": "js/jquery-3.6.3.min.js "
+      },
+      {
+          "uri": "js/jquery-ui.min.js"
+      },
+      {
+          "uri": "js/pivot.min.js"
+      }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "vcpapp.vcpprofileconfiguration.view",
+        "async": true,
+        "viewPath": "vcpapp.vcpprofileconfiguration.view"
+        
+      },
+      "routes": [
+        {
+          "name": "Home",
+          "pattern": "",
+          "target": [
+            "Home"
+          ]
+        },
+        {
+          "name": "PivotTable",
+          "pattern": "PivotTable",
+          "target": [
+            "PivotTable"
+          ]
+        }
+      ],
+      "targets": {
+        "Home": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": true,
+          "viewId": "Home",
+          "viewName": "Home"
+        },
+        "PivotTable": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": true,
+          "viewId": "PivotTable",
+          "viewName": "PivotTable"
+      }
+      }
+    },
+    "rootView": {
+      "viewName": "vcpapp.vcpprofileconfiguration.view.App",
+      "type": "XML",
+      "id": "App"
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "vcpconfiguration"
+  },
+  "sap.platform.cf": {
+    "oAuthScopes": [
+        "$XSAPPNAME.User",
+        "$XSAPPNAME.admin"
+    ]
+}
+}

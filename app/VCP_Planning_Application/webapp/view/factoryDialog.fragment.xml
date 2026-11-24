@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog id="factory" title="Factory Location" rememberSelections="true" search="handleSearch" liveChange="handleSearch"
+		confirm="handleSelection" cancel="handleClose" multiSelect="true"  contentWidth="420px" items="{/aItems}" 
+        selectionChange="handleProdChange" growing="true">
+		<StandardListItem title="{= ${FACTORY_LOC} ? ${FACTORY_LOC}:${LOCATION_ID} }" description="{LOCATION_DESC}" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

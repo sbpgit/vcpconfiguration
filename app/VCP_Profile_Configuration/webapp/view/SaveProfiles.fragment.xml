@@ -1,0 +1,99 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:macros="sap.fe.macros"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+>
+    <Dialog
+        id="idDisplayingProfilesPA"
+        titleAlignment="Center" title="Selection of Profiles" contentWidth="800px">
+        <!-- <SearchField liveChange="onPrimarySearch"></SearchField> -->
+            <Table
+                id="idDisSavePA"
+                selectionChange=""
+                mode="MultiSelect"
+                items="{path: '/ToSaveProfile'}"
+                visible="true"
+                growing="true"
+                growingScrollToLoad="true"
+                growingFinished="onGrowingFinished"
+                
+                
+            
+            >
+                <columns>
+                    <Column>
+                        <Text text="Location" />
+                    </Column>
+
+                    <Column>
+                        <Text text="Product" />
+                    </Column>
+
+                    <Column>
+                        <Text text="Prediction Profile" />
+                    </Column>
+
+                     <Column>
+                        <Text text="Forecasting Profile" />
+                    </Column>
+
+                    <Column>
+                        <Text text="Planning Profile" />
+                    </Column>
+
+                         <Column>
+                        <Text text="Effective Option%" />
+                    </Column>
+
+                     <Column>
+                        <Text text="Optimization" />
+                    </Column>
+
+                     <Column visible="false"> 
+                        <Text text="Period Profile" />
+                    </Column>
+                    <Column> 
+                        <Text text="Derived Char" />
+                    </Column>
+
+                   
+
+                </columns>
+                <items>
+                    <ColumnListItem>
+                       
+                        <Text text="{LOCATION_ID}"></Text>
+                        <Text text="{PRODUCT_ID}"></Text>
+                         <Text text="{PREDICTION_PROFILE}"></Text>
+                          <Text text="{FORECASTING_PROFILE}"></Text>
+                        <Text text="{PLANNING_PROFILE}"></Text>
+                         <Text text="{OPTION_PERCENT}"></Text>
+                         <Text text="{OPTIMIZATION_PROFILE}"></Text>
+                         <Text text="{PERIOD_PROFILE}"></Text>
+                         <Text text="{DERIVED_PROFILE}"></Text>
+
+                       
+                       
+
+
+
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+            
+
+        <beginButton>
+        <Button id="idConfirmPA"  text="Confirm" type="Emphasized" press="onConfirm"></Button>
+        </beginButton>
+        <endButton>
+            <Button
+                type='Default'
+                text="Close"
+                press="onDisplayClose"
+            />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

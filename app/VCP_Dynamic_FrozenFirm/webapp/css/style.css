@@ -1,0 +1,27 @@
+
+div#__action1 {
+    content-visibility: hidden;
+}
+
+button[id*='vcpapp.vcpdynamicfrozenfirm::sap.suite.ui.generic.template.ListReport.view.ListReport::getDynHorizonGrpData--addEntry']  {
+  content-visibility: hidden !important;
+  }
+
+  button[id*='vcpapp.vcpdynamicfrozenfirm::sap.suite.ui.generic.template.ListReport.view.ListReport::getDynHorizonGrpData--deleteEntry']  {
+    content-visibility: hidden !important;
+    }
+
+  button[id*='vcpapp.vcpdynamicfrozenfirm::sap.suite.ui.generic.template.ObjectPage.view.Details::getDynHorizonGrpData--edit']  {
+    content-visibility: hidden !important;
+  }
+  button[id*='vcpapp.vcpdynamicfrozenfirm::sap.suite.ui.generic.template.ObjectPage.view.Details::getDynHorizonGrpData--delete']  {
+    content-visibility: hidden !important;
+  }
+
+.disabledInput input.sapMInputBaseInner {
+    pointer-events: none;
+}
+
+input[id*='toDate-inner']{
+  pointer-events:none
+}

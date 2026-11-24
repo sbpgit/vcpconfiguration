@@ -1,0 +1,60 @@
+<core:FragmentDefinition xmlns:microchart="sap.suite.ui.microchart" xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:micro="sap.suite.ui.microchart"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified">
+    <Dialog id="idRestItem2PPM" title="Create Optimization Profile" contentWidth="550px" titleAlignment="Center">
+           
+                
+        <VBox class="sapUiSmallMargin">
+            <f:SimpleForm id="SimpleFormToolbaritem2PPM" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="4" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false">
+                <f:content>
+
+                      <Label required="true" text="Profile"/>
+                      <Input id="idProfileOptPPM" width="225px" placeholder="Profile" ></Input>
+                      <Label required="true" text="Profile Description"></Label>
+                      <Input id="idProfileOptDes" width="225px" placeholder="Profile Description"></Input>
+                    <Label required="true" text="Algorithm"/>
+                    <!-- <ComboBox id="idAlgorithmPPM" value="" width="225px"  placeholder="Algorithm"   /> -->
+                    <Select id="idAlgorithmPPM" selectedKey="" width="225px" showSecondaryValues="true"   change="OnOptAlgChange">
+                                                <!-- <core:ListItem key="None" text=""/> -->
+                                                <core:ListItem key="LINEAR" text="LINEAR" additionalText="Linear Optimization"/>
+                                                <core:ListItem key="GD" text="GD" additionalText="Gradient Descent"/>
+                                                <core:ListItem key="LINEAR_GD" text="LINEAR_GD" additionalText="Linear or Gradient Descent"/>
+                                                <core:ListItem key="SLSQP" text="SLSQP" additionalText="Non Linear - Sequential Least Squares Quadratic Programming"/>
+                                                <core:ListItem key="AUGLAG" text="AUGLAG" additionalText="Non Linear - Augmented Lagrangian"/>
+                                                <core:ListItem key="AUGLAG_EQ" text="AUGLAG_EQ"
+                                                    additionalText="Non Linear - Augmented Lagrangian Variant uses Subsidary Algorithm for Penalizing Equality Constraint"/>
+                                            </Select>
+ 
+
+                    <Label required="true" text="Factor"/>
+                    <Input id="idFactorPPM" value=".90" width="225px" liveChange="onSelFactor" maxLength="100" placeholder="factor" type="Number"   />
+                    
+                  
+                    <Label required="true" text="Char Weight" />
+
+                    	<!-- <ToggleButton text="False"  pressed="false" press="onSel" /> -->
+                        	<!-- <ToggleButton text="False" width="100px" id="idCharWePPM" pressed="false" enabled="true" press="onSel" /> -->
+                    <!-- <CheckBox text="False" width="225px" id="idCharWePPM" select="onSel" ></CheckBox> -->
+                    	<Switch state="true" id="idCharWePPM" customTextOn="Yes"    customTextOff="No"/>
+         
+                        	<!-- <RadioButtonGroup id="rbg3" columns="5" valueState="Error" class="sapUiMediumMarginBottom">
+			<RadioButton id="RB3-1" text="Option 1" />
+			<RadioButton id="RB3-2" text="Option 2" />
+			<RadioButton id="RB3-3" text="Option 3" />
+		</RadioButtonGroup> -->
+                        
+                    <!-- <Input id="idCharWePPM"  liveChange="onSelMonth"  placeholder="0 - 104" type="Number" visible="true"/> -->
+                </f:content>
+            </f:SimpleForm>
+        </VBox>
+        <buttons>
+            
+            <Button id="idSaveOptimizePPM" text="Save" press="onSave" type="Emphasized"/>
+            <Button type='Reject' text="Close" press="onClose"></Button>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

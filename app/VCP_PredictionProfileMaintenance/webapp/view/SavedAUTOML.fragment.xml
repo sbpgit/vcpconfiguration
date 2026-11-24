@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+	<Dialog title="Parameters" contentWidth="1500px" >
+        <Table id="idParam2PPM"  items="{path: '/items4'}"  rememberSelections="false" sticky="ColumnHeaders">
+				<columns>
+								<Column hAlign="Left" vAlign="Middle" width="15%">
+						<Text text="Profile" />
+					</Column>
+					<Column hAlign="Left" vAlign="Middle" width="20%">
+						<Text text="Parameter Name"/>
+					</Column>
+                    <Column hAlign="Left" vAlign="Middle" width="auto">
+						<Text text="Parameter Description"/>
+					</Column>
+                     <Column hAlign="Left" vAlign="Middle" width="auto">
+						<Text text="Default/User Value"/>
+					</Column>
+					
+                   
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+						
+								<ObjectIdentifier title="{SUBMETHOD_PROFILE}" />
+                            <Text text="{PARA_NAME}"/>
+                            <Text text="{PARA_DESC}"/>
+                            <Text text="{= ${DOUBLEVAL} === null ? ${STRVAL} !== null ? ${STRVAL} : ${INTVAL} : ${DOUBLEVAL} }"/>                        
+                                                    
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		<buttons>
+			<Button type='Reject' text="{i18n>close}" press="onAutoParaClose"></Button>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

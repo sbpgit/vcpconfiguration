@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog contentHeight="65vh" contentWidth="35vw" title="Sort Columns" titleAlignment="Center">
+    <!-- <SearchField  id="idSearchChars" liveChange="onFragCharsearch"></SearchField> -->
+        <Table id="idDataTableSortPA" items="{/data}" showNoData="false" mode="MultiSelect" selectionChange="onSelectSort">
+            <columns>
+                <Column />
+                <Column/>
+            </columns>
+            <items>
+                <ColumnListItem selected="{select}">
+                    <cells>
+						<Text text="{field}"/>
+						<FlexBox id="idFlexBoxPA" justifyContent="SpaceAround" width="50%">
+							<core:Icon color="blue" class="icon" press="onIconPress" src="sap-icon://navigation-up-arrow" tooltip="up" />
+							<core:Icon color="blue" class="icon" press="onIconPress" src="sap-icon://slim-arrow-down" tooltip="down" />
+							<!-- <core:Icon color="blue" class="icon" press="onIconPress" src="sap-icon://collapse-group" tooltip="top" />
+							<core:Icon color="blue" class="icon" press="onIconPress" src="sap-icon://expand-group" tooltip="bottom" /> -->
+						</FlexBox>
+					</cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        <beginButton >
+            <Button tooltip="OK" text="OK" type="Emphasized" press="onAddColumnSort"/>
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

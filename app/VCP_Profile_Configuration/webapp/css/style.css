@@ -1,0 +1,166 @@
+/* Enter your custom styles here */
+
+/* div#__data1 {
+    margin-left: 18px !important;
+} */
+/* div#__data3 {
+    margin-left: 17px !important;
+} */
+/* div#__data5 {
+    margin-left: 18px !important;
+} */
+/* div#__data7 {
+    margin-left: 20px !important;
+} */
+/* div#__vbox4 {margin-top: 27px !important;} */
+
+
+/* bdi#container-vcpapp\.vcpprofileconfiguration---Home--headerLabelLocation-bdi {
+    font-size: medium !important;
+    font-weight: bold !important;
+} */
+
+.loccss {
+    font-size: medium !important;
+    font-weight: bold !important;
+    margin-left: 52% !important;
+    color: black !important;
+}
+/* bdi#container-vcpapp\.vcpprofileconfiguration---Home--headerLabelPrediction-bdi {
+    margin-left: 439px !important;
+    font-size: medium !important;
+    font-weight: bold !important;
+} */
+
+.predcss {
+    margin-left: 269px !important;
+    font-size: medium !important;
+    font-weight: bold !important;
+}
+/* sapMLabelTextWrapper {
+    margin-left: 439px !important;
+    font-size: medium !important;
+    font-weight: bold !important; 
+} */
+ 
+/* bdi#container-vcpapp\.vcpprofileconfiguration---Home--headerLabelPlanning-bdi {
+    margin-left: 99px !important;
+    font-size: medium !important;
+    font-weight: bold !important;
+} */
+
+.Plancss{
+    margin-left: 70px !important;
+    font-size: medium !important;
+    font-weight: bold !important;
+}
+/* bdi#container-vcpapp\.vcpprofileconfiguration---Home--headerLabelForecasting-bdi {
+    margin-left: 141px !important;
+    font-size: medium !important;
+    font-weight: bold !important;
+} */
+
+.forecss{
+    margin-left: 85px !important;
+    font-size: medium !important;
+    font-weight: bold !important;
+}
+.methodcss{
+    margin-left: 107px !important;
+    font-size: medium !important;
+    font-weight: bold !important; 
+}
+.Optimcss{
+    margin-left: 100px !important;
+    font-size: medium !important;
+    font-weight: bold !important;
+}
+
+
+.colorYellow {
+    background: rgb(235, 243, 7) !important;
+}
+.colorGreen{
+    background:lightgreen !important ;
+}
+.colorRed{
+    background: rgb(222, 129, 129) !important;
+}
+/* .Green{
+  color: lightgreen !important;
+} */
+
+.GreenCheckBox {
+    
+        width: 20px !important;          
+        height: 20px !important;         
+        background-color: green !important; 
+    
+}
+.YellowCheckBox {
+    width: 20px !important;          
+    height: 20px !important;         
+    background-color:yellow !important; 
+}
+
+.RedCheckBox {
+    width: 20px !important;          
+    height: 20px !important;         
+    background-color:rgb(255, 0, 0) !important; 
+}
+
+.Rem {
+    margin-left: 0.5px;
+}
+
+/* .GreenCheckBox .sapMCb {
+    background-color: green !important;
+    border: 2px solid green !important; 
+}
+
+.GreenCheckBox .sapMCbInner {
+    background-color: green !important;
+    border-color: green !important; 
+} */
+
+
+/* .sapMLabelInner {margin-left: 34px;} */
+
+
+.mainDivClass {
+    overflow: scroll;
+    width: 100%;
+    height: 80vh;
+ 
+}
+table.pvtTable tbody tr th {
+    color: #090909 !important;
+}
+
+th.frezzThead {
+    position: sticky;
+    /* z-index: 200; */
+}
+
+
+.icon {
+    visibility: hidden;
+}
+ 
+.selectItem:hover .icon {
+    visibility: visible;
+}
+*{
+
+    scrollbar-width: thin;
+
+    /*"auto"or "thin"*/
+
+    scrollbar-color: #888 #f1f1f1;
+
+    /*thumb and track color*/
+
+}
+div.sapMSltPicker .sapMSltPickerValueState {
+    display: none !important;
+}

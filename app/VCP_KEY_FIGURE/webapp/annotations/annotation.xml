@@ -1,0 +1,78 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/v2/catalog/$metadata">
+        <edmx:Include Namespace="CatalogService" Alias="SAP"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
+        <Annotations Target="CatalogService.getKeyFigureMaster"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="UI.SelectionFields">
+                    <Collection >
+                        <PropertyPath >KEY_FIG_DESC</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="KEY_FIG_ID"/>
+                            <PropertyValue Property="Label" String="Key Figure ID"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="KEY_FIG_DESC"/>
+                            <PropertyValue Property="Label" String="Key Figure Name"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                         <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="KEY_FIG_DESCRIPTION"/>
+                            <PropertyValue Property="Label" String="Key Figure Description"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PRIORITY_ORDER"/>
+                            <PropertyValue Property="Label" String="Priority Order"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DISPLAY_ORDER"/>
+                            <PropertyValue Property="Label" String="Display Order"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CatalogService.getKeyFigureMaster/KEY_FIG_DESC"
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.Label" String="Key Figure"></Annotation>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="CollectionPath" String="getKeyFigureMaster">
+                        </PropertyValue>
+                        <PropertyValue Property="Parameters">
+                            <Collection >
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="ValueListProperty" String="KEY_FIG_DESC"></PropertyValue>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="KEY_FIG_DESC"></PropertyValue>
+                                </Record>
+                                <!-- <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="ValueListProperty" String="KEY_FIG_DESC"></PropertyValue>
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="KEY_FIG_DESC"></PropertyValue>
+                                </Record> -->
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

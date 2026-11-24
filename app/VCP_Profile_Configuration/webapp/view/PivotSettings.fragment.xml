@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog contentHeight="45vh" contentWidth="25vw" title="Visible Columns" titleAlignment="Center">
+    <SearchField  id="idSearchCharsPA" liveChange="onFragCharsearch"></SearchField>
+        <Table id="idDataTablePA" items="{/data}" showNoData="false" mode="MultiSelect">
+            <columns>
+                <Column hAlign="Center"/>
+            </columns>
+            <items>
+                <ColumnListItem selected="{select}">
+                    <cells>
+                        <Text text="{field}"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+        <beginButton >
+            <Button tooltip="OK" text="OK" type="Emphasized" press="onAddColumn"/>
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

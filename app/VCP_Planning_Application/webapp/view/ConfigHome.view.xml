@@ -1,0 +1,264 @@
+<mvc:View
+    height="100%"
+    class="sapUiSizeCompact"
+    controllerName="vcpapp.vcpplanningapps1.controller.ConfigHome"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:ux="sap.uxap"
+>
+    <Page
+        id="ConfigHome"
+        showHeader="false"
+        showFooter="true"
+    >
+        <content>
+            <ux:ObjectPageLayout
+                id="ObjectPageLayoutPC"
+                useIconTabBar="true"
+                showHeaderContent="false"
+                showFooter="false"
+            >
+                <!-- <ux:headerTitle>
+                    <ux:ObjectPageDynamicHeaderTitle class="titleAlign">
+                        <ux:expandedHeading>
+                            <Title text="{i18n>appTitle}" />
+                        </ux:expandedHeading>
+                    </ux:ObjectPageDynamicHeaderTitle>
+                </ux:headerTitle> -->
+
+                <ux:sections>
+                    <ux:ObjectPageSection showTitle="false">
+                        <ux:subSections>
+                            <ux:ObjectPageSubSection>
+                                <ux:blocks>
+                                    <Table
+                                        id="idParameterTable"
+                                        backgroundDesign="Solid"
+                                        showSeparators="None"
+                                        alternateRowColors="false"
+                                        width="auto"
+                                        class="sapUiNoMarginTop"
+                                        items="{
+			                path: '/parameters',
+                            sorter: 
+                                { path: 'GROUP_DESCRIPTION',
+                                descending: false,
+                                group: true },                              
+                            groupHeaderFactory: '.getGroupHeader'
+                            }"
+                                        updateFinished="onUpdateFinished"
+                                    >
+                                        <!--                            
+                                <headerToolbar>
+                                    <OverflowToolbar>
+                                        <content>
+                                            <Label text="Parameters" LabelDesign="Bold" class="headerFont" />
+                                            <ToolbarSpacer />
+                                            <Button icon="sap-icon://save" type="Emphasized" text="Save" class="btnSize" press="onPressSave" />
+                                        </content>
+                                    </OverflowToolbar>
+                                </headerToolbar> -->
+
+                                        <columns>
+                                            <Column visible="false" />
+                                            <Column
+                                                minScreenWidth="Tablet"
+                                                demandPopin="true"
+                                                width="30em"
+                                            />
+                                            <Column
+                                                minScreenWidth="Tablet"
+                                                demandPopin="true"
+                                                width="30em"
+                                            />
+                                            <Column
+                                                minScreenWidth="Tablet"
+                                                demandPopin="true"
+                                                width="10em"
+                                            />
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem>
+                                                <cells>
+
+                                                    <Text
+                                                        text="{PARAMETER_ID}"
+                                                        visible="{path:'PARAMETER_ID', formatter:'.formatter.handleParameterVisibility'}"
+                                                    />
+                                                    <Label
+                                                        text="{DESCRIPTION}"
+                                                        required="true"
+                                                        visible="{path:'PARAMETER_ID', formatter:'.formatter.handleParameterVisibility'}"
+                                                    />
+                                                    
+                               
+                             <HBox alignItems="Center" width="100%" >
+                                    <!-- INPUT (flexible) -->
+                                        <Input 
+                                            value="{parts: [{path:'VALUE'}, {path:'PARAMETER_ID'}], formatter: '.formatter.formatBooleanValue'}"
+                                            showValueHelp="{VALUE_HELP}"
+                                            enabled="{path:'PARAMETER_ID', formatter: '.formatter.getInputEnabled'}"
+                                            visible="{ path: 'PARAMETER_ID', formatter: '.formatter.handleVisibility' }"
+                                            valueHelpOnly="true"
+                                            type="{= ${UNIT} === 'Weeks' ? 'Number' : 'Text'}"
+                                            liveChange="onParamValueChange"
+                                            valueHelpRequest="handleValueHelpRequest"
+                                            class="sapUiTinyMarginEnd"
+                                        >
+                                            <layoutData>
+                                                <FlexItemData growFactor="1" />
+                                            </layoutData>
+                                        </Input>
+
+                                        <!-- ICON (FIXED WIDTH COLUMN) -->
+                                        <HBox width="30px" justifyContent="Center">
+                                            <ObjectStatus
+                                                icon="sap-icon://message-information"
+                                                state="Information"
+                                                visible="{path:'PARAMETER_ID', formatter: '.formatter.showInfoIcon'}"
+                                                tooltip="{path:'PARAMETER_ID', formatter: '.formatter.getInfoTooltip'}"
+                                            />
+                                        </HBox>
+
+                                        <Text
+                                        text="{
+                                            parts: [
+                                                { path: 'UNIT' },
+                                                { path: 'PARAMETER_ID' }
+                                            ],
+                                            formatter: '.formatter.formatWeeksTextWithParam'
+                                        }"
+                                        width="80px"
+                                        wrapping="false"
+                                    />
+
+                                        <!-- UNIT (FIXED WIDTH COLUMN) -->
+                                    <!-- <Text
+                                         text="{ path: 'UNIT', formatter: '.formatter.formatWeeksText' }"
+                                       
+                                        width="80px"
+                                        wrapping="false"
+                                    /> -->
+
+                                    </HBox>
+
+                                    <!-- <Text
+                                                        text="{UNIT}"
+                                                        visible="{path:'PARAMETER_ID', formatter:'.formatter.handleUnitVisibility'}" wrapping="false" /> -->
+                                
+                                                
+                           
+                                 <!-- <HBox alignItems="Center" width="100%" >
+
+                              
+                                        <Input 
+                                            value="{parts: [{path:'VALUE'}, {path:'PARAMETER_ID'}], formatter: '.formatter.formatBooleanValue'}"
+                                            showValueHelp="{VALUE_HELP}"
+                                            enabled="{path:'PARAMETER_ID', formatter: '.formatter.getInputEnabled'}"
+                                            valueHelpOnly="true"
+                                            type="{= ${UNIT} === 'Weeks' ? 'Number' : 'Text'}"
+                                            liveChange="onParamValueChange"
+                                            valueHelpRequest="handleValueHelpRequest"
+                                            class="sapUiTinyMarginEnd"
+                                        >
+
+                                            <layoutData>
+                                             <FlexItemData growFactor="1" />
+                                            </layoutData>
+
+                                        </Input>
+
+                              
+                                      
+
+                        <HBox width="30px" justifyContent="Center">
+                                <ObjectStatus
+                                    icon="sap-icon://message-information"
+                                    state="Information"
+                                    visible="{path:'PARAMETER_ID', formatter: '.formatter.showInfoIcon'}"
+                                    tooltip="{path:'PARAMETER_ID', formatter: '.formatter.getInfoTooltip'}"
+                                />
+                            </HBox>
+                                 
+                                        <Text
+                                            text="{= ${UNIT} ? ${UNIT} : '' }" class="sapUiTinyMarginBegin" wrapping="false"
+                                            visible="{path:'PARAMETER_ID', formatter:'.formatter.handleUnitVisibility'}"/> 
+                
+                               </HBox> -->
+
+
+
+            <!-- <HBox>
+                    <Input
+                        value="{parts: [{path:'VALUE'}, {path:'PARAMETER_ID'}], formatter: '.formatter.formatBooleanValue'}"
+                        showValueHelp="{VALUE_HELP}"
+                        enabled="{path:'PARAMETER_ID', formatter: '.formatter.getInputEnabled'}"
+                        valueHelpOnly="true"
+                        type="{= ${UNIT} === 'Weeks' ? 'Number' : 'Text'}"
+                        liveChange="onParamValueChange"
+                        valueHelpRequest="handleValueHelpRequest"
+                    
+                    />
+                <ObjectStatus
+                        icon="sap-icon://message-information"
+                        state="Information"
+                        visible="{path:'PARAMETER_ID', formatter: '.formatter.showInfoIcon'}"
+                        text=""
+                        tooltip="{path:'PARAMETER_ID', formatter: '.formatter.getInfoTooltip'}"
+                        class="sapUiTinyMarginBegin"
+                    />
+     
+            </HBox> -->
+                                                
+                                                    <!-- <Input
+                                                        value="{parts: [{path:'VALUE'}, {path:'PARAMETER_ID'}], formatter: '.formatter.formatBooleanValue'}"
+                                                        showValueHelp="{VALUE_HELP}"
+                                                        enabled="{path:'PARAMETER_ID', formatter: '.formatter.getInputEnabled'}"
+                                                        valueHelpOnly="true"
+                                                        type="{= ${UNIT} === 'Weeks' ? 'Number' : 'Text'}"
+                                                        liveChange="onParamValueChange"
+                                                        valueHelpRequest="handleValueHelpRequest"
+                                                        visible="{path:'PARAMETER_ID', formatter: '.formatter.handleParameterVisibility'}"
+                                                    /> -->
+
+                                            
+                                                    <!-- <Text
+                                                        text="{UNIT}"
+                                                        visible="{path:'PARAMETER_ID', formatter:'.formatter.handleUnitVisibility'}"
+                                                    /> -->
+                                                   
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </ux:blocks>
+                            </ux:ObjectPageSubSection>
+                        </ux:subSections>
+                    </ux:ObjectPageSection>
+                </ux:sections>
+                <!--
+                <ux:footer>
+            <OverflowToolbar width="100%" design="Solid">
+                <ToolbarSpacer />
+                <Button icon="sap-icon://save" type="Emphasized" text="Save" class="btnSize" press="onPressSave" />
+            </OverflowToolbar>
+        </ux:footer> -->
+            </ux:ObjectPageLayout>
+        </content>
+        <footer>
+            <OverflowToolbar width="100%">
+                <ToolbarSpacer />
+                <Button
+                    icon="sap-icon://save"
+                    type="Emphasized"
+                    id="save"
+                    text="Save"
+                    class="btnSize"
+                    press="onPressSave"
+                />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

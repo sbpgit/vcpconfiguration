@@ -1,0 +1,58 @@
+<mvc:View controllerName="vcpibpapis.controller.Home" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns:u="sap.ui.unified" xmlns="sap.m">
+  <Page id="page" title="{i18n&gt;title}" showHeader="false">
+    <OverflowToolbar>
+      <Button icon="sap-icon://menu2" press=".onCollapseExpandPress" tooltip="Expand/Collapse" />
+      <ToolbarSpacer />
+      <Button text="Refresh" icon="sap-icon://refresh" press="onRefreshPressed" tooltip="Refresh" />
+    </OverflowToolbar>
+    <HBox class="noPaddingMargin" width="100%"  height="90%" alignItems="Stretch">
+      <tnt:NavigationList id="navigationList" itemSelect=".onNavigationSelect" width="250px" selectedKey="Location" class="navListZIndex">
+        <tnt:NavigationListItem text="Master Data" icon="sap-icon://database" key="Master">
+          <tnt:NavigationListItem text="Location" key="Location" />
+          <tnt:NavigationListItem text="Customer Group" key="Customer Group" />
+          <tnt:NavigationListItem text="Product" key="Product" />
+          <tnt:NavigationListItem text="Location Product" key="Location Product" />
+          <!-- <tnt:NavigationListItem text="Assembly Header" key="Assembly Header"/> -->
+          <tnt:NavigationListItem text="Bill Of Material" key="Bill Of Material" />
+          <tnt:NavigationListItem text="Resource" key="Location Line" />
+          <!-- <tnt:NavigationListItem text="Location Resource" key="Line Master"/> -->
+          <tnt:NavigationListItem text="Production Source Resource" key="Line Capacity" />
+        </tnt:NavigationListItem>
+        <tnt:NavigationListItem text="Transactional Data" icon="sap-icon://accelerated" key="Transactional">
+          <tnt:NavigationListItem text="Component Coefficients" key="Component Coefficient" />
+          <tnt:NavigationListItem text="Actual Demand" key="Sales History" />
+          <tnt:NavigationListItem text="Resource Capacity" key="Resource Capacity" />
+          <tnt:NavigationListItem text="Capacity Consumption" key="Capacity Consumption" />
+          <tnt:NavigationListItem text="Product Demand" key="Product Demand" />
+        </tnt:NavigationListItem>
+      </tnt:NavigationList>
+      <VBox id="mainContent" class="sapUiTinyMarginTop" width="100%" fitContainer="true">
+        <Toolbar class="stickyToolbar">
+          <ToolbarSpacer />
+          <!-- <Button id="btnPlay" icon="sap-icon://media-play" text="Run" type="Neutral" visible="false" press=".onPlayPressed" class="sapUiTinyMarginEnd" /> -->
+          <Button id="btnAdd" icon="sap-icon://add" text="Add Table"  visible="false" type="Neutral" press=".onAddPressed" class="sapUiSmallMargin" tooltip="Add a new table"/>
+          <Button id="btnInfo" icon="sap-icon://hint" type="Neutral" visible="false" press=".onInfoPressed" class="sapUiTinyMarginEnd" tooltip="View details and guidance" />
+        </Toolbar>
+         <ScrollContainer id="scrollArea"
+        vertical="true"
+        horizontal="false"
+        height="100%"
+        width="100%"
+        focusable="true">
+        <VBox id="dynamicTabBar" width="100%"></VBox>
+    </ScrollContainer>
+       
+      </VBox>
+    </HBox>
+    <footer>
+      <Bar class="customFooterBar">
+        <contentRight>
+          <ToolbarSpacer width="15rem" />
+          <!-- <u:FileUploader id="FileUploaderId" class="sapUiTinyMarginEnd" sameFilenameAllowed="true" iconOnly="false" buttonOnly="true" visible="true" icon="sap-icon://upload" iconFirst="true" style="Emphasized" change="onUpload" />
+          <Button id="_IDGenButton3" icon="sap-icon://arrow-bottom" text="Download" press="onDownload" type="Emphasized" /> -->
+          <Button text="Save" press="onSave" type="Emphasized" tooltip="Save changes"/>
+        </contentRight>
+      </Bar>
+    </footer>
+  </Page>
+</mvc:View>

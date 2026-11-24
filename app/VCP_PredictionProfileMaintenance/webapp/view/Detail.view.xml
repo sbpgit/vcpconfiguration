@@ -1,0 +1,167 @@
+<mvc:View controllerName="vcpapp.vcppredictionprofilemaintenance.controller.Detail"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form">
+    <Page id="idPagePPM" title="Create Profile" titleAlignment="Center" showNavButton="true" enableScrolling="true" navButtonPress="onBack" showFooter="true" class="boldText">
+
+        <VBox class="sapUiSmallMargin">
+            <f:SimpleForm id="FormToolbar" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="3" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false" ariaLabelledBy="Title1">
+                <f:content>
+                    <Label text="{i18n>profName}"/>
+                    <Input id="idPnPPM" value="" width="300px" liveChange="onProfileName" valueStateText="The Profile name already exists. Please enter a different one."/>
+                    <Label text="{i18n>profDesc}"/>
+                    <Input id="idPdescPPM" value="" width="300px"/>
+                    <Label text="{i18n>auth}"/>
+                    <Input id="idAuthPPM" value="" width="300px" visible="false"/>
+                    <Label text="Profile Type"/>
+                    <Select id="idProfile" change="onPrifileChange" selectedKey="A" width="200px" class="selectClass">
+                        <core:ListItem key="N" text="No Data"/>
+                        <core:ListItem key="P" text="Prediction Profile"/>
+                        <core:ListItem key="F" text="Forecasting Profile"/>
+                        <core:ListItem key="C" text="Cluster Profile"/>
+                    </Select>
+                    <Label text="{i18n>algo}"/>
+                    <HBox>
+                    <Select id="idAlgoPPM" items="{/Alogirthm}" change="onAlgorChange" selectedKey="N" width="130px" class="selectClass">
+                        <!-- <core:ListItem key="N" text="No Data"/>
+                        <core:ListItem key="M" text="{i18n>mlr}"/>
+                        <core:ListItem key="H" text="{i18n>hgbt}"/>
+                        <core:ListItem key="V" text="{i18n>varma}"/>
+                        <core:ListItem key="R" text="{i18n>rdt}"/> -->
+                        <core:ListItem  key="{key}" text="{Algo}"/>
+                    </Select>
+                    	<CheckBox id="idCheckBoxPPM" text="AUTO ML" selected="false" class="checkboxClass" select="onMLselect"/>
+                    </HBox>
+                </f:content>
+            </f:SimpleForm>
+
+
+        </VBox>
+        <content>
+        <!-- <ScrollContainer vertical="true" horizontal="false" class="StickySCroll" width="auto" height="500px" > -->
+            <Table id="idTabPPM" items="{path: '/results'}" mode="MultiSelect" sticky="ColumnHeaders">
+                <columns>
+                    <Column hAlign="Left" vAlign="Middle" width="180px">
+                        <Text text="{i18n>param}" />
+                    </Column>
+                    <Column hAlign="Left" vAlign="Middle" width="700px">
+                        <Text text="{i18n>desc}" />
+                    </Column>
+                    <Column hAlign="Left" vAlign="Middle">
+                        <Text text="{i18n>type}"/>
+                    </Column>
+                    <Column hAlign="Left" vAlign="Middle">
+                        <Text text="{i18n>deValue}"/>
+                    </Column>
+                    <Column hAlign="Left" vAlign="Middle">
+                        <Text text="{i18n>uservalue}"/>
+                    </Column>
+                    <!-- <Column hAlign="Left" vAlign="Middle" width="70px">
+                        <Text text="{i18n>notes}"/>
+                    </Column>
+                    <Column hAlign="Left" vAlign="Middle" visible="false">
+                        <Text text=""/>
+                    </Column> -->
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <Text text="{PARA_NAME}"/>
+                        <Text text="{DESCRIPTION}"/>
+                        <Select id="idTypes" change="onTypeChange" selectedKey="{DATATYPE}" editable="false">
+                            <core:ListItem key="INTEGER" text="Integer"/>
+                            <core:ListItem key="DOUBLE" text="Double"/>
+                            <core:ListItem key="NVARCHAR" text="String"/>
+                        </Select>
+                        <Text text="{DEFAULTVAL}"/>
+                        <Input id="idDatatype" value="" liveChange="onLive" valueState="None"/>
+                        <!-- <Button id="idNotes" icon="sap-icon://display" tooltip="Notes" press="onNotes" iconDensityAware="false" type="Transparent"/>
+                        <Text text="{FLAG}"/> -->
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <!-- </ScrollContainer> -->
+        </content>
+<!-- //**Pradeep for AUTO ML**// -->
+	  <l:Splitter id="homeScrSplitter" visible="false">
+                        <Page title="Profiles Available" titleAlignment="Center">
+                            <layoutData>
+                                <l:SplitterLayoutData resizable="false" size="50%" />
+                            </layoutData>
+                            <content>
+                              <!-- <ScrollContainer vertical="true" horizontal="false" class="StickySCroll" width="auto"  > -->
+                                <Table id="PrimarytablePPM" mode="SingleSelectMaster" items="{ path: '/items1'}" selectionChange="handleSelection" rememberSelections="false">
+                                   
+                                    <columns>
+                                        <Column hAlign="Center" visible="true">
+                                            <Text text="Profile Name" />
+                                        </Column>
+                                        <Column hAlign="Center" visible="false">
+                                            <Text text="Method" />
+                                        </Column>
+                                        <!-- <Column hAlign="Center">
+                                            <Text text="{i18n>chardesc}" />
+                                        </Column> -->
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <Text text="{PROFILE}" />
+                                                <Text text="{METHOD}" />
+                                                
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                                     <!-- </ScrollContainer> -->
+                            </content>
+                        </Page>
+                        <Page title="Profiles Selected" titleAlignment="Center" showFooter="true">
+                            <layoutData>
+                                <l:SplitterLayoutData resizable="false" size="50%" />
+                            </layoutData>
+                            <Table id="SecondarytablePPM" items="{ path: '/items2'}" mode="SingleSelectMaster" rememberSelections="false" selectionChange="handleParaSelection" >
+                              
+                                <columns>
+                                    <Column hAlign="Center" visible="true">
+                                        <Text text="Profile Name" />
+                                    </Column>
+                                    <Column hAlign="Center" visible="false">
+                                        <Text text="METHOD" />
+                                    </Column>
+                                    <Column hAlign="Right" width="2rem" >
+                    <Text text="" />
+                </Column>
+                                    <!-- <Column hAlign="Center" visible="false">
+                                        <Text text="{i18n>seq}" />
+                                    </Column>
+                                    <Column hAlign="Center">
+                                        <Text text="{i18n>chardesc}" />
+                                    </Column> -->
+                                </columns>
+                                <items>
+                                    <ColumnListItem type="Active">
+                                        <cells>
+                                            <!-- <Text text="{PROFILE}" /> -->
+                                            <Text text="{=${METHOD} === 'AUTOML' ? ${SUBMETHOD_PROFILE}:${PROFILE}}"/>
+                                            <Text text="{=${METHOD} === 'AUTOML'? ${SUBMETHOD}:${METHOD}}" />
+                                            <Button icon="sap-icon://decline" press="onDeletePress" type="Transparent" />
+                                            <!-- <Text text="{SEQUENCE}" />
+                                            <Text text="{CHAR_DESC}" /> -->
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </Page>
+                    </l:Splitter>
+<!-- //*AUTOML**// -->
+        <footer>
+            <Toolbar id="idFooterPPM">
+                <ToolbarSpacer/>
+                <Button id="idSavePPM" type='Ghost' text="{i18n>save}" press="onSubmit"></Button>
+            </Toolbar>
+        </footer>
+
+    </Page>
+</mvc:View>

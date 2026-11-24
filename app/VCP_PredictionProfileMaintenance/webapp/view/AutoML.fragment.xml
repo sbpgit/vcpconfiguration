@@ -1,0 +1,63 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+	<Dialog title="AUTOML Parameters" contentWidth="1500px" >
+        <Table id="idParam1PPM"  items="{path: '/items3'}" updateFinished="onSelectedIndex" mode="MultiSelect" selectionChange="onSelectChange" rememberSelections="false" sticky="ColumnHeaders">
+				<columns>
+				<!-- <Column>
+
+<Text text="" />
+
+</Column> -->
+					<Column hAlign="Left" vAlign="Middle" width="15%">
+						<Text text="{i18n>param}" />
+					</Column>
+					<Column hAlign="Left" vAlign="Middle" width="20%">
+						<Text text="{i18n>paramDesc}"/>
+					</Column>
+                    <Column hAlign="Left" vAlign="Middle" width="auto">
+						<Text text="DATATYPE"/>
+					</Column>
+					 <Column hAlign="Left" vAlign="Middle" width="auto">
+						<Text text="DEFAULT VALUE"/>
+					</Column>
+					<Column hAlign="Left" vAlign="Middle" width="auto">
+						<Text text="INT VALUE"/>
+					</Column>
+					<Column hAlign="Left" vAlign="Middle" width="auto">
+						<Text text="DOUBLE VALUE"/>
+					</Column>
+					<Column hAlign="Left" vAlign="Middle" width="auto">
+						<Text text="STR VALUE"/>
+					</Column>
+                    <Column hAlign="Left" vAlign="Middle" width="20%">
+						<Text text="DEPENDENCY"/>
+					</Column>
+                    <!-- <Column hAlign="Left" vAlign="Middle">
+						<Text text="{i18n>uservalue}"/>
+					</Column> -->
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+						<!-- <CheckBox enabled="false" selected="true" /> -->
+								<ObjectIdentifier title="{PARA_NAME}" />
+                            <Text text="{DESCRIPTION}"/>
+                            <Text text="{DATATYPE}"/>
+							                            <Text text="{DEFAULTVAL}"/>
+                            <!-- <Text text="{= ${INTVAL} === null ? ${STRVAL} !== null ? ${STRVAL} : ${DOUBLEVAL} : ${INTVAL} }"/>
+                            <Text text="{= ${DOUBLEVAL} === null ? ${STRVAL} !== null ? ${STRVAL} : ${INTVAL} : ${DOUBLEVAL} }"/>
+							<Text text="{= ${STRVAL} === null ? ${STRVAL} !== null ? ${STRVAL} : ${INTVAL} : ${DOUBLEVAL} }"/> -->
+<Text text="{INTVAL}"/>
+<Text text="{DOUBLEVAL}"/>
+<Input id="idInputText1PPM" value="{STRVAL}" enabled="{=${PARA_NAME} === 'CONFIG_DICT' ? true : ${PARA_NAME} === 'PIPELINE_TYPE' ? true : false }" liveChange="onInputChange"/>
+                            <Text text="{DEPENDENCY}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		<buttons>
+        <Button id="idBtnSavePPM" type='Accept' text="Save" press="onSaveClicked"></Button>
+			<Button type='Reject' text="{i18n>close}" press="onAutoClose"></Button>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
